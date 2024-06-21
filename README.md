@@ -2,12 +2,14 @@
 
 ## 画面遷移
 * TitleScene -> タイトル画面
+* LoginScene -> ログイン画面
 * BattleScene -> 対戦画面
 * ShopScene -> 売店の画面
 * FieldScene -> フィールド画面
 
 ## ソースファイル
-* PlayerController.cs -> 十字キーで移動
+* OnKeyPress_ChangeAnime.cs -> 十字キーでアニメーションの方向転換
 * OnMouseDown_Hide.cs -> クリックしたらゲームオブジェクトを非表示にする
 * OnMouseDown_Show.cs -> クリックしたらゲームオブジェクトを表示する
-* OnKeyPress_ChangeAnime -> 十字キーでアニメーションの方向転換
+* OnMouseDown_SwitchScene.cs -> クリックしたら画面遷移
+* PlayerController.cs -> 十字キーで移動
