@@ -9,3 +9,4 @@
 ## ソースファイル
 * PlayerController.cs -> 十字キーで移動
 * OnMouseDown_Hide.cs -> クリックしたらゲームオブジェクトを非表示にする
+* OnMouseDown_Show.cs -> クリックしたらゲームオブジェクトを表示する

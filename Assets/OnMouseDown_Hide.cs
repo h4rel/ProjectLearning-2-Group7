@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnMouseDown_Hide : MonoBehaviour{
+public class OnMouseDown_Hide : MonoBehaviour
+{
+    public List<GameObject> objectsToHide; // 非表示にするゲームオブジェクトのリストをInspectorから指定する
 
-    public GameObject objectToHide; // 非表示にするゲームオブジェクトをInspectorから指定する
-
-    void OnMouseDown(){
-
-        if (objectToHide != null)
+    void OnMouseDown()
+    {
+        // 指定したゲームオブジェクトを全て非表示にする
+        foreach (GameObject obj in objectsToHide)
         {
-            objectToHide.SetActive(false); // 指定したゲームオブジェクトを非表示にする
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
         }
 
         this.gameObject.SetActive(false); // 自身のゲームオブジェクト（ボタン）も非表示にする
-
     }
 }
