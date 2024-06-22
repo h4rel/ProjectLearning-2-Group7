@@ -14,6 +14,7 @@
 ## ソースファイル(アルファベット順)
 * Forever_ChaseCamera.cs -> ずっとカメラが追いかける(視点をプレイヤーに固定する)
 * Forever_Escape.cs -> ずっと逃げる
+* Forever_MoveH.cs -> ずっと水平移動する
 * OnCollision_SwitchScene.cs -> 衝突したら画面遷移
 * OnKeyPress_ChangeAnime.cs -> 十字キーでアニメーションの方向転換
 * OnMouseDown_Hide.cs -> クリックしたらゲームオブジェクトを非表示にする
