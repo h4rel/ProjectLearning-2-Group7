@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 848163023}
   - component: {fileID: 848163022}
   m_Layer: 5
-  m_Name: Button (Legacy) (3)
+  m_Name: Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 1005063750}
   - component: {fileID: 1005063749}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1569,6 +1569,8 @@ GameObject:
   - component: {fileID: 1578853883}
   - component: {fileID: 1578853885}
   - component: {fileID: 1578853884}
+  - component: {fileID: 1578853887}
+  - component: {fileID: 1578853886}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -1637,6 +1639,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578853882}
   m_CullTransparentMesh: 1
+--- !u!114 &1578853886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578853882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2447f7cd84014752b0b6a79907fa9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
+--- !u!114 &1578853887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578853882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2447f7cd84014752b0b6a79907fa9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!1 &1599127244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1832,7 @@ GameObject:
   - component: {fileID: 1678335232}
   - component: {fileID: 1678335231}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2004,7 +2032,7 @@ GameObject:
   - component: {fileID: 1885025395}
   - component: {fileID: 1885025394}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
