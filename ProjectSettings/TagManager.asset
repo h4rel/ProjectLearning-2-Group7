@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: tree
+    uniqueID: 2971349585
+    locked: 0
+  - name: objects
+    uniqueID: 2127504819
+    locked: 0
+  - name: clock
+    uniqueID: 2934692687
+    locked: 0

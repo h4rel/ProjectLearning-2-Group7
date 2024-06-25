@@ -8,12 +8,15 @@ public class OnCollision_SwitchScene : MonoBehaviour {
 
 	public string targetObjectName; // 目標オブジェクト名：Inspectorで指定
 	public string sceneName;  // シーン名：Inspectorで指定
+	public string from; // どこから移動するか：Inspectorで指定
 
 	void OnCollisionEnter2D(Collision2D collision)  { // 衝突したとき
 		// もし、衝突したものの名前が目標オブジェクトだったら
 		if (collision.gameObject.name == targetObjectName) {
-			// シーンを切り換える
-			SceneManager.LoadScene (sceneName);
+			// 画面遷移の方向の保存
+            GlobalVariables.dir = from;
+            // シーンを切り換える
+            SceneManager.LoadScene (sceneName);
 		}
 	}
 }
