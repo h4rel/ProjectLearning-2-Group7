@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Field02Scene.unity
     guid: 8a972d1c9d6604b56bead6f2ff78c70a
+  - enabled: 1
+    path: Assets/Scenes/SelectGameScene.unity
+    guid: 581f1ccba86a94f098266401846049f7
   m_configObjects: {}

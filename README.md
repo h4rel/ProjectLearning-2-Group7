@@ -25,6 +25,7 @@
 * OnCollision_SwitchScene.cs -> 衝突したら画面遷移
 * OnKeyPress_ChangeAnime.cs -> 十字キーでアニメーションの方向転換
 * OnMouseDown_Hide.cs -> クリックしたらゲームオブジェクトを非表示にする
+* OnMouseDown_Login.cs -> クリックしたらInputTextから入力情報をサーバに送信し、受理されたらログイン完了
 * OnMouseDown_Show.cs -> クリックしたらゲームオブジェクトを表示する
 * OnMouseDown_SwitchScene.cs -> クリックしたら画面遷移
 * PlayerController.cs -> 十字キーで移動
