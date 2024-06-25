@@ -19,6 +19,11 @@
 * EndingScene -> ゲーム終了時画面
 
 ## ソースファイル(アルファベット順)
+* Button_HideImages.cs -> クリックしたら画像を表示
+* Button_ResumeGame.cs -> クリックしたらゲームを再開する(UI->Buttonにアタッチ)
+* Button_ShoImages.cs -> クリックしたら画像を非表示
+* Button_StopGame.cs -> クリックしたらゲームを一時停止する(UI->Buttonにアタッチ)
+* Button_Switch.cs -> クリックしたらボタンを置き換え
 * Forever_ChaseCamera.cs -> ずっとカメラが追いかける(視点をプレイヤーに固定する)
 * Forever_Escape.cs -> ずっと逃げる
 * Forever_MoveH.cs -> ずっと水平移動する
@@ -26,9 +31,7 @@
 * OnKeyPress_ChangeAnime.cs -> 十字キーでアニメーションの方向転換
 * OnMouseDown_Hide.cs -> クリックしたらゲームオブジェクトを非表示にする
 * OnMouseDown_Login.cs -> クリックしたらInputTextから入力情報をサーバに送信し、受理されたらログイン完了
-* OnMouseDown_ResumeGame.cs -> クリックしたらゲームを再開する
 * OnMouseDown_Show.cs -> クリックしたらゲームオブジェクトを表示する
-* OnMouseDown_StopGame.cs -> クリックしたらゲームを一時停止する
 * OnMouseDown_SwitchScene.cs -> クリックしたら画面遷移
 * PlayerController.cs -> 十字キーで移動
 * Sometime_Flip.cs -> ときどき反転する
