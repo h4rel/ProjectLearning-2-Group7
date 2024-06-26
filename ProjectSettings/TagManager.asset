@@ -50,3 +50,6 @@ TagManager:
   - name: clock
     uniqueID: 2934692687
     locked: 0
+  - name: player
+    uniqueID: 1909470431
+    locked: 0
