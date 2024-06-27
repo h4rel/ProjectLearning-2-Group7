@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Field03Scene.unity
     guid: 8a972d1c9d6604b56bead6f2ff78c70a
   - enabled: 1
+    path: Assets/Scenes/Field04Scene.unity
+    guid: 0dd5531ff4deb41efaf415729317ad4c
+  - enabled: 1
+    path: Assets/Scenes/Field05Scene.unity
+    guid: e46fb65ac82224ca1bc9270137323de2
+  - enabled: 1
     path: Assets/Scenes/SelectGameScene.unity
     guid: 581f1ccba86a94f098266401846049f7
   - enabled: 1
