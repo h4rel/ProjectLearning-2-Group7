@@ -1,0 +1,62 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "a2464707-8d62-4f9c-a64a-855d39ef8875",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "e1cb28d3-1b2a-4b62-98f2-efa2b39bc165",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3042756a-7a4f-43aa-bb0c-4c376bc82521",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "86bf29ad-9160-4de0-92e3-60d2914be846",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "04018d9c-f4d0-4b4f-946a-968643436232",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0857103d-3c41-4f51-8b57-b78f5392dab0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

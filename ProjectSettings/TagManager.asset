@@ -53,3 +53,6 @@ TagManager:
   - name: player
     uniqueID: 1909470431
     locked: 0
+  - name: sword
+    uniqueID: 3313583517
+    locked: 0
