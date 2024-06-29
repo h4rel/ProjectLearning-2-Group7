@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Text
   - 
   - 
   - 
@@ -53,6 +53,11 @@ TagManager:
   - name: player
     uniqueID: 1909470431
     locked: 0
+<<<<<<< HEAD
   - name: sword
     uniqueID: 3313583517
+=======
+  - name: UI
+    uniqueID: 165564375
+>>>>>>> 07aa36b8419991e395d6312732978ae01c1a5bb7
     locked: 0
