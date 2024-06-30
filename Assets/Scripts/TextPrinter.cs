@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 
 public class TextPrinter : MonoBehaviour
 {
-    // 対象のテキスト
-    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text text; //対象のテキスト(Inspecterから指定)
 
+    [SerializeField] private Canvas canvas; //今回は関係ありません
+
+    [SerializeField] private string s; //反映したい文字列(Inspecterから指定)
+
+    private string[] str;
+    private int id = 0;
+    private int sz;
+ 
     // 次の文字を表示するまでの時間[s]
     [SerializeField] private float _delayDuration = 0.1f;
 
@@ -16,12 +26,34 @@ public class TextPrinter : MonoBehaviour
     private float _remainTime;
     private int _currentMaxVisibleCharacters;
 
+    public void Start()
+    {
+        canvas.enabled = false;
+        _isRunning = false;
+        str = s.Split('@');
+        sz = str.Count();
+    }
+
     public void Show()
     {
+        text.maxVisibleCharacters = 0;
         // 演出を開始するように内部状態をセット
+        if (id >= sz)
+        {
+            canvas.enabled = false;
+            return;
+        }
+        if (id == 0)
+        {
+            canvas.enabled = true;
+        }
+        text.SetText(str[id]);
+        id++;
+
         _isRunning = true;
         _remainTime = _delayDuration;
         _currentMaxVisibleCharacters = 0;
+
     }
 
     private void Update()
@@ -34,7 +66,7 @@ public class TextPrinter : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             _currentMaxVisibleCharacters = 1000;
         }
@@ -44,11 +76,11 @@ public class TextPrinter : MonoBehaviour
         if (_remainTime > 0) return;
 
         // 表示する文字数を一つ増やす
-        _text.maxVisibleCharacters = ++_currentMaxVisibleCharacters;
+        text.maxVisibleCharacters = ++_currentMaxVisibleCharacters;
         _remainTime = _delayDuration;
 
         // 文字を全て表示したら待機状態に移行
-        if (_currentMaxVisibleCharacters >= _text.text.Length)
+        if (_currentMaxVisibleCharacters >= text.text.Length)
             _isRunning = false;
     }
 }
