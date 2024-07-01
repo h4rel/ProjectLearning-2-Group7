@@ -10,9 +10,9 @@ public class TextPrinter : MonoBehaviour
 {
     [SerializeField] private TMP_Text text; //対象のテキスト(Inspecterから指定)
 
-    [SerializeField] private Canvas canvas; //今回は関係ありません
+    [SerializeField] private Canvas canvas;
 
-    [SerializeField] private string s; //反映したい文字列(Inspecterから指定)
+    [SerializeField][TextArea(1,100)] private string s; //反映したい文字列(Inspecterから指定)
 
     private string[] str;
     private int id = 0;
