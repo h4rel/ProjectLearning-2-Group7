@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: tree
+    uniqueID: 1797701187
+    locked: 0
+  - name: building
+    uniqueID: 433094183
+    locked: 0
+  - name: object
+    uniqueID: 3065009421
+    locked: 0
+  - name: player
+    uniqueID: 682900963
+    locked: 0
+  - name: sword
+    uniqueID: 3516216443
+    locked: 0
