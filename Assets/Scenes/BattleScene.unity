@@ -733,9 +733,17 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -778750853
       objectReference: {fileID: 0}
+    - target: {fileID: 455080929211965427, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4006774355726102230, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
       propertyPath: m_Name
       value: Slash Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969196729475821585, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5396693979713155064, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
       propertyPath: m_LocalPosition.x
@@ -747,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5396693979713155064, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.14963439
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5396693979713155064, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
       propertyPath: m_LocalRotation.w
