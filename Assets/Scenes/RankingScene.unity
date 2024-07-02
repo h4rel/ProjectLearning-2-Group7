@@ -454,6 +454,8 @@ GameObject:
   - component: {fileID: 296351602}
   - component: {fileID: 296351604}
   - component: {fileID: 296351603}
+  - component: {fileID: 296351606}
+  - component: {fileID: 296351605}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -522,6 +524,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296351601}
   m_CullTransparentMesh: 1
+--- !u!114 &296351605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296351601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
+--- !u!114 &296351606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296351601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!1 &322917718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2615,6 +2643,7 @@ GameObject:
   - component: {fileID: 1774679682}
   - component: {fileID: 1774679681}
   - component: {fileID: 1774679680}
+  - component: {fileID: 1774679683}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -2724,6 +2753,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774679678}
   m_CullTransparentMesh: 1
+--- !u!114 &1774679683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774679678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: SelectGameScene
 --- !u!1 &1776719566
 GameObject:
   m_ObjectHideFlags: 0
