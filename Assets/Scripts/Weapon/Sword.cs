@@ -6,7 +6,7 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
-    
+
     private PlayerControls playerControls;
     private Animator myAnimator;
     private PlayerControllers playerControllers;
@@ -16,10 +16,15 @@ public class Sword : MonoBehaviour
 
     private void Awake()
     {
-        playerControllers = GetComponent<PlayerControllers>();
+        playerControllers = GetComponentInParent<PlayerControllers>();
         activeWeapon = GetComponent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
         playerControls = new PlayerControls();
+
+        if (playerControllers == null)
+        {
+            Debug.LogError("PlayerController is not assigned in Sword script.");
+        }
     }
 
     private void OnEnable()
@@ -67,12 +72,18 @@ public class Sword : MonoBehaviour
 
     private void MouseFollowWithOffset()
     {
+        if (playerControllers == null)
+        {
+            Debug.LogError("PlayerController is not assigned in MouseFollowWithOffset.");
+            return;
+        }
+
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoiny = Camera.main.WorldToScreenPoint(playerControllers.transform.position);
+        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(playerControllers.transform.position);
 
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
 
-        if(mousePos.x < playerScreenPoiny.x)
+        if (mousePos.x < playerScreenPoint.x)
         {
             activeWeapon.transform.rotation = Quaternion.Euler(0, -180, angle);
         }
@@ -81,5 +92,4 @@ public class Sword : MonoBehaviour
             activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
-
 }
