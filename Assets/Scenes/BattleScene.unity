@@ -883,6 +883,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768460104029223892, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
+      propertyPath: deathVFXPrefab
+      value: 
+      objectReference: {fileID: 8549191430966002898, guid: ca034f48198f30b4e90121fd649eaade, type: 3}
+    - target: {fileID: 7768460104029223892, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
       propertyPath: startingHealth
       value: 3
       objectReference: {fileID: 0}
