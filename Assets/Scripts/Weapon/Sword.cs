@@ -81,7 +81,7 @@ public class Sword : MonoBehaviour
     {
         if (playerControllers == null)
         {
-            Debug.LogError("PlayerController is not assigned in MouseFollowWithOffset.");
+            Debug.LogError("PlayerControllers is not assigned in MouseFollowWithOffset.");
             return;
         }
 
