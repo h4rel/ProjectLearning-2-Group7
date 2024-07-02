@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
-    [SerializeField] private Material whiteFlashMat;
-    [SerializeField] private float restoreDefaultMatTime = .2f;
+    [SerializeField] private Material whiteFlashMat; // ダメージを受けた際に一時的に変更するマテリアル
+    [SerializeField] private float restoreDefaultMatTime = .2f; // 元のマテリアルに戻すまでの時間
 
-    private Material defaultMat;
-    private SpriteRenderer spriteRenderer;
-    private EnemyHealth enemyHealth;
+    private Material defaultMat; // 元のマテリアル
+    private SpriteRenderer spriteRenderer; // スプライトレンダラーコンポーネント
+    private EnemyHealth enemyHealth; // 敵のヘルスコンポーネント
 
     private void Awake()
     {
-        enemyHealth = GetComponent<EnemyHealth>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultMat = spriteRenderer.material;
+        enemyHealth = GetComponent<EnemyHealth>(); // 敵のヘルスコンポーネントを取得
+        spriteRenderer = GetComponent<SpriteRenderer>(); // スプライトレンダラーコンポーネントを取得
+        defaultMat = spriteRenderer.material; // 元のマテリアルを保存
     }
 
+    // ダメージを受けた際のフラッシュルーチン
     public IEnumerator FlashRoutine()
     {
-        spriteRenderer.material = whiteFlashMat;
-        yield return new WaitForSeconds(restoreDefaultMatTime);
-        spriteRenderer.material = defaultMat;
-        enemyHealth.DetectDeath();
+        spriteRenderer.material = whiteFlashMat; // マテリアルを一時的に白フラッシュマテリアルに変更
+        yield return new WaitForSeconds(restoreDefaultMatTime); // 一定時間待機
+        spriteRenderer.material = defaultMat; // 元のマテリアルに戻す
+        enemyHealth.DetectDeath(); // 敵の死亡を確認
     }
 }

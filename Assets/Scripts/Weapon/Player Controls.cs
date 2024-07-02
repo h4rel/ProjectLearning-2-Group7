@@ -15,11 +15,16 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
+// PlayerControlsクラスは、InputActionAssetをラップし、入力アクションの管理を行います
 public partial class @PlayerControls : IInputActionCollection2, IDisposable
 {
+    // InputActionAssetオブジェクトを格納するプロパティ
     public InputActionAsset asset { get; }
+
+    // コンストラクタでInputActionAssetを初期化します
     public @PlayerControls()
     {
+        // JSON形式のInputActionAssetを生成
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerControls"",
     ""maps"": [
@@ -82,38 +87,48 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Movement
+
+        // Movementアクションマップを取得
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
+        // Moveアクションを取得
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
-        // Combat
+
+        // Combatアクションマップを取得
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        // Attackアクションを取得
         m_Combat_Attack = m_Combat.FindAction("Attack", throwIfNotFound: true);
     }
 
+    // InputActionAssetを破棄するためのメソッド
     public void Dispose()
     {
         UnityEngine.Object.Destroy(asset);
     }
 
+    // バインディングマスクの取得と設定
     public InputBinding? bindingMask
     {
         get => asset.bindingMask;
         set => asset.bindingMask = value;
     }
 
+    // デバイスの取得と設定
     public ReadOnlyArray<InputDevice>? devices
     {
         get => asset.devices;
         set => asset.devices = value;
     }
 
+    // コントロールスキームの取得
     public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
 
+    // 指定したアクションがこのアセットに含まれているか確認
     public bool Contains(InputAction action)
     {
         return asset.Contains(action);
     }
 
+    // 入力アクションの列挙子を取得
     public IEnumerator<InputAction> GetEnumerator()
     {
         return asset.GetEnumerator();
@@ -124,32 +139,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         return GetEnumerator();
     }
 
+    // 全ての入力アクションを有効化
     public void Enable()
     {
         asset.Enable();
     }
 
+    // 全ての入力アクションを無効化
     public void Disable()
     {
         asset.Disable();
     }
 
+    // 入力バインディングの列挙子を取得
     public IEnumerable<InputBinding> bindings => asset.bindings;
 
+    // 指定した名前またはIDの入力アクションを検索
     public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
     {
         return asset.FindAction(actionNameOrId, throwIfNotFound);
     }
 
+    // 指定したバインディングマスクに一致するバインディングを検索し、関連するアクションを返す
     public int FindBinding(InputBinding bindingMask, out InputAction action)
     {
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
+    // Movementアクションマップの定義
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Move;
+
+    // Movementアクションマップの操作を提供する構造体
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -160,6 +182,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
         public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
+
+        // Moveアクションのコールバックを追加する
         public void AddCallbacks(IMovementActions instance)
         {
             if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
@@ -169,6 +193,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             @Move.canceled += instance.OnMove;
         }
 
+        // Moveアクションのコールバックを登録解除する
         private void UnregisterCallbacks(IMovementActions instance)
         {
             @Move.started -= instance.OnMove;
@@ -176,12 +201,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             @Move.canceled -= instance.OnMove;
         }
 
+        // 特定のコールバックを削除する
         public void RemoveCallbacks(IMovementActions instance)
         {
             if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
+        // コールバックを設定する
         public void SetCallbacks(IMovementActions instance)
         {
             foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
@@ -192,10 +219,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     }
     public MovementActions @Movement => new MovementActions(this);
 
-    // Combat
+    // Combatアクションマップの定義
     private readonly InputActionMap m_Combat;
     private List<ICombatActions> m_CombatActionsCallbackInterfaces = new List<ICombatActions>();
     private readonly InputAction m_Combat_Attack;
+
+    // Combatアクションマップの操作を提供する構造体
     public struct CombatActions
     {
         private @PlayerControls m_Wrapper;
@@ -206,6 +235,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
         public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+
+        // Attackアクションのコールバックを追加する
         public void AddCallbacks(ICombatActions instance)
         {
             if (instance == null || m_Wrapper.m_CombatActionsCallbackInterfaces.Contains(instance)) return;
@@ -215,6 +246,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             @Attack.canceled += instance.OnAttack;
         }
 
+        // Attackアクションのコールバックを登録解除する
         private void UnregisterCallbacks(ICombatActions instance)
         {
             @Attack.started -= instance.OnAttack;
@@ -222,12 +254,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             @Attack.canceled -= instance.OnAttack;
         }
 
+        // 特定のコールバックを削除する
         public void RemoveCallbacks(ICombatActions instance)
         {
             if (m_Wrapper.m_CombatActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
+        // コールバックを設定する
         public void SetCallbacks(ICombatActions instance)
         {
             foreach (var item in m_Wrapper.m_CombatActionsCallbackInterfaces)
@@ -237,10 +271,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public CombatActions @Combat => new CombatActions(this);
+
+    // Movementアクションマップ用のコールバックインターフェース
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
     }
+
+    // Combatアクションマップ用のコールバックインターフェース
     public interface ICombatActions
     {
         void OnAttack(InputAction.CallbackContext context);
