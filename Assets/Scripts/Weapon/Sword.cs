@@ -4,50 +4,65 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private GameObject slashAnimPrefab; // ?????????????????
-    [SerializeField] private Transform slashAnimSpawnPoint; // ?????????????????
-    [SerializeField] private Transform weaponCollider; // ????????
-    [SerializeField] private float swordAttackCD = .5f; // ???????????
+    [SerializeField] private GameObject slashAnimPrefab;
+    [SerializeField] private Transform slashAnimSpawnPoint;
+    [SerializeField] private Transform weaponCollider;
+    [SerializeField] private float swordAttackCD = 0.5f;
 
-    private PlayerControls playerControls; // ??????????????
-    private Animator myAnimator; // ????????????????
-    private PlayerControllers playerControllers; // ????????????
-    private ActiveWeapon activeWeapon; // ????????
-    private bool attackButtonDown, isAttacking = false; // ?????????????????????????
+    private PlayerControls playerControls;
+    private Animator myAnimator;
+    private PlayerControllers playerControllers;
+    private ActiveWeapon activeWeapon;
+    private bool attackButtonDown, isAttacking = false;
 
-    private GameObject slashAnim; // ????????????????????????
+    private GameObject slashAnim;
 
     private void Awake()
     {
-        // ?????????????????
+        // 必要なコンポーネントを取得
         playerControllers = GetComponentInParent<PlayerControllers>();
         activeWeapon = GetComponent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
         playerControls = new PlayerControls();
 
+        // コンポーネントの初期化チェック
         if (playerControllers == null)
         {
-            Debug.LogError("PlayerController is not assigned in Sword script.");
+            Debug.LogError("PlayerControllers is not assigned in Sword script.");
+        }
+        if (activeWeapon == null)
+        {
+            Debug.LogError("ActiveWeapon is not assigned in Sword script.");
+        }
+        if (myAnimator == null)
+        {
+            Debug.LogError("Animator is not assigned in Sword script.");
         }
     }
 
     private void OnEnable()
     {
-        // ????????????
+        // インプットアクションを有効化
         playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // インプットアクションを無効化
+        playerControls.Disable();
     }
 
     private void Start()
     {
-        // ???????????????
+        // インプットアクションにコールバックを設定
         playerControls.Combat.Attack.started += _ => StartAttacking();
         playerControls.Combat.Attack.canceled += _ => StopAttacking();
     }
 
     private void Update()
     {
-        MouseFollowWithOffset(); // ?????????????????
-        Attack(); // ?????
+        MouseFollowWithOffset(); // 武器の向きをマウスに合わせる
+        Attack(); // 攻撃処理
     }
 
     private void StartAttacking()
@@ -62,35 +77,31 @@ public class Sword : MonoBehaviour
 
     private void Attack()
     {
-        // ???????????????????????
+        // 攻撃ボタンが押され、攻撃中でない場合に攻撃を開始
         if (attackButtonDown && !isAttacking)
         {
-            isAttacking = true; // ??????????
-            myAnimator.SetTrigger("Attack"); // ??????????????
-            weaponCollider.gameObject.SetActive(true); // ??????????????
-            // ???????????????????????
+            isAttacking = true;
+            myAnimator.SetTrigger("Attack");
+            weaponCollider.gameObject.SetActive(true);
             slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
             slashAnim.transform.parent = this.transform.parent;
-            StartCoroutine(AttackCDRoutine()); // ???????????????????
+            StartCoroutine(AttackCDRoutine());
         }
     }
 
     private IEnumerator AttackCDRoutine()
     {
-        yield return new WaitForSeconds(swordAttackCD); // ????????
-        isAttacking = false; // ???????????
+        yield return new WaitForSeconds(swordAttackCD);
+        isAttacking = false;
     }
 
-    // ????????????????
     public void DoneAttackingAnimEvent()
     {
-        weaponCollider.gameObject.SetActive(false); // ??????????????
+        weaponCollider.gameObject.SetActive(false);
     }
 
-    // ?????????????????????
     private void SwingUpFlipAnimEvent()
     {
-        // ???????????????????????
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
 
         if (playerControllers.FacingLeft)
@@ -99,10 +110,8 @@ public class Sword : MonoBehaviour
         }
     }
 
-    // ?????????????????????
     private void SwingDownFlipAnimEvent()
     {
-        // ???????????????????????
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (playerControllers.FacingLeft)
@@ -111,12 +120,19 @@ public class Sword : MonoBehaviour
         }
     }
 
-    // ???????????????????????
     private void MouseFollowWithOffset()
     {
+        // playerControllersが正しく初期化されているか確認
         if (playerControllers == null)
         {
             Debug.LogError("PlayerControllers is not assigned in MouseFollowWithOffset.");
+            return;
+        }
+
+        // Camera.mainがnullでないか確認
+        if (Camera.main == null)
+        {
+            Debug.LogError("Main Camera is not assigned in the scene.");
             return;
         }
 
