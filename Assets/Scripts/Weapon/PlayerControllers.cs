@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class PlayerControllers : MonoBehaviour
 {
-    // プロパティとフィールドの定義
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     public static PlayerControllers Instance;
 
     [SerializeField] private float moveSpeed = 1f;
 
-    // クラス内で使用する変数の宣言
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRender;
+    private Knockback knockback;
 
     private bool facingLeft = false;
 
@@ -23,11 +22,11 @@ public class PlayerControllers : MonoBehaviour
     {
         Instance = this;
 
-        // PlayerControlsクラスのインスタンス化とコンポーネントの取得
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRender = GetComponent<SpriteRenderer>();
+        knockback = GetComponent<Knockback>();
     }
 
     private void OnEnable()
@@ -60,6 +59,8 @@ public class PlayerControllers : MonoBehaviour
 
     private void Move()
     {
+        if(knockback.gettingKnockedBack) { return; }
+
         // プレイヤーを移動させる処理
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }

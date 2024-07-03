@@ -352,6 +352,7 @@ MonoBehaviour:
   slashAnimPrefab: {fileID: 4006774355726102230, guid: 7c5b0fbf9ddf7594d800d940e7110304, type: 3}
   slashAnimSpawnPoint: {fileID: 280448063}
   weaponCollider: {fileID: 1389981069}
+  swordAttackCD: 0.5
 --- !u!1 &1389981068
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,10 +430,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.3008666, y: 0.7576809}
-      - {x: -3.4635143, y: -0.5964882}
-      - {x: -2.386043, y: -2.3777092}
-      - {x: -0.57279146, y: -1.982347}
+    - - {x: -1.6621766, y: -0.020524979}
+      - {x: -2.5880337, y: -0.76324576}
+      - {x: -2.1220098, y: -1.7106767}
+      - {x: -0.9757904, y: -1.5793483}
       - {x: -0.8366823, y: -0.6835265}
       - {x: -0.88546133, y: -0.4434455}
   m_UseDelaunayMesh: 0
@@ -559,6 +560,9 @@ GameObject:
   - component: {fileID: 2026380627}
   - component: {fileID: 2026380635}
   - component: {fileID: 2026380636}
+  - component: {fileID: 2026380639}
+  - component: {fileID: 2026380638}
+  - component: {fileID: 2026380637}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -826,6 +830,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+--- !u!114 &2026380637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026380626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d877fc6e7df264e4d9851780ca429382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackTime: 0.2
+--- !u!114 &2026380638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026380626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18a64297c8dea34a91601b71b6950c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteFlashMat: {fileID: 2100000, guid: 568985556dffca543bf0dd2943a39ace, type: 2}
+  restoreDefaultMatTime: 0.2
+--- !u!114 &2026380639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026380626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a7586dfca88e441923ee7252189f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  knockBackThrushtAmount: 10
+  damageRecoveryTime: 1
 --- !u!1001 &2820150701241361684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -836,7 +882,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 633194817300525302, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
       propertyPath: moveSpeed
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3321217138000852806, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
       propertyPath: m_Name
