@@ -46,23 +46,30 @@ public class Projectile : MonoBehaviour
             {
                 Debug.Log("Projectile hit a player: " + player.gameObject.name);
                 player.TakeDamage(1, transform);
-                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-                Destroy(gameObject);
+                PlayHitEffectAndDestroy();
             }
             else if (enemyHealth != null && !isEnemyProjectile)
             {
                 Debug.Log("Projectile hit an enemy: " + enemyHealth.gameObject.name);
                 enemyHealth.TakeDamage(1);
-                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-                Destroy(gameObject);
+                PlayHitEffectAndDestroy();
             }
             else
             {
                 Debug.Log("Projectile hit something else.");
-                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-                Destroy(gameObject);
+                PlayHitEffectAndDestroy();
             }
         }
+    }
+
+    private void PlayHitEffectAndDestroy()
+    {
+        if (particleOnHitPrefabVFX != null)
+        {
+            GameObject vfx = Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+            Destroy(vfx, 1f); // •—©`•∆•£•Ø•Î•®•’•ß•Ø•»§Ú1√Î··§À∆∆â≤£®±ÿ“™§ÀèÍ§∏§∆â‰∏¸£©
+        }
+        Destroy(gameObject); // •◊•Ì•∏•ß•Ø•ø•§•Î§Ú∆∆â≤
     }
 
     private void DetectFireDistance()
