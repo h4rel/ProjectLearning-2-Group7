@@ -14,16 +14,39 @@ public class Flash : MonoBehaviour
     private void Awake()
     {
         enemyHealth = GetComponent<EnemyHealth>(); // 敵のヘルスコンポーネントを取得
+        if (enemyHealth == null)
+        {
+            Debug.LogWarning("EnemyHealth component not found on " + gameObject.name);
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>(); // スプライトレンダラーコンポーネントを取得
-        defaultMat = spriteRenderer.material; // 元のマテリアルを保存
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer component not found on " + gameObject.name);
+        }
+        else
+        {
+            defaultMat = spriteRenderer.material; // 元のマテリアルを保存
+        }
     }
 
     // ダメージを受けた際のフラッシュルーチン
     public IEnumerator FlashRoutine()
     {
-        spriteRenderer.material = whiteFlashMat; // マテリアルを一時的に白フラッシュマテリアルに変更
-        yield return new WaitForSeconds(restoreDefaultMatTime); // 一定時間待機
-        spriteRenderer.material = defaultMat; // 元のマテリアルに戻す
-        enemyHealth.DetectDeath(); // 敵の死亡を確認
+        if (spriteRenderer != null && whiteFlashMat != null)
+        {
+            spriteRenderer.material = whiteFlashMat; // マテリアルを一時的に白フラッシュマテリアルに変更
+            yield return new WaitForSeconds(restoreDefaultMatTime); // 一定時間待機
+            spriteRenderer.material = defaultMat; // 元のマテリアルに戻す
+        }
+
+        if (enemyHealth != null)
+        {
+            enemyHealth.DetectDeath(); // 敵の死亡を確認
+        }
+        else
+        {
+            Debug.Log("EnemyHealth component is not attached to " + gameObject.name + ", skipping DetectDeath.");
+        }
     }
 }

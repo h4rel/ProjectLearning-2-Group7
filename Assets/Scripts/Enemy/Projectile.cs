@@ -29,6 +29,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Projectile hit something: " + other.gameObject.name);
+
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>();
 
@@ -36,28 +38,30 @@ public class Projectile : MonoBehaviour
         {
             if (player != null && isEnemyProjectile)
             {
+                Debug.Log("Projectile hit a player: " + player.gameObject.name);
                 player.TakeDamage(1, transform);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
             else if (enemyHealth != null && !isEnemyProjectile)
             {
+                Debug.Log("Projectile hit an enemy: " + enemyHealth.gameObject.name);
                 enemyHealth.TakeDamage(1);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
             else
             {
+                Debug.Log("Projectile hit something else.");
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
     }
 
-
     private void DetectFireDistance()
     {
-        if(Vector3.Distance(transform.position, startPosition) > projectileRange)
+        if (Vector3.Distance(transform.position, startPosition) > projectileRange)
         {
             Destroy(gameObject);
         }
