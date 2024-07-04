@@ -21,7 +21,7 @@ public class Sword : MonoBehaviour
     {
         // 必要なコンポーネントを取得
         playerControllers = GetComponentInParent<PlayerControllers>();
-        activeWeapon = GetComponent<ActiveWeapon>();
+        activeWeapon = GetComponentInParent<ActiveWeapon>(); // 親から取得するように修正
         myAnimator = GetComponent<Animator>();
         playerControls = new PlayerControls();
 
@@ -136,10 +136,17 @@ public class Sword : MonoBehaviour
             return;
         }
 
+        // activeWeaponがnullでないか確認
+        if (activeWeapon == null)
+        {
+            Debug.LogError("ActiveWeapon is not assigned in MouseFollowWithOffset.");
+            return;
+        }
+
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(playerControllers.transform.position);
 
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(mousePos.y - playerScreenPoint.y, mousePos.x - playerScreenPoint.x) * Mathf.Rad2Deg;
 
         if (mousePos.x < playerScreenPoint.x)
         {

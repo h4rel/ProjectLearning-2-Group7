@@ -32,19 +32,28 @@ public class Projectile : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>();
 
-        if(!other.isTrigger && (enemyHealth || player))
+        if (!other.isTrigger)
         {
-            if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
+            if (player != null && isEnemyProjectile)
             {
-                player?.TakeDamage(1, transform);
+                player.TakeDamage(1, transform);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
-            }else if(!other.isTrigger){
+            }
+            else if (enemyHealth != null && !isEnemyProjectile)
+            {
+                enemyHealth.TakeDamage(1);
+                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
+            else
+            {
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
     }
+
 
     private void DetectFireDistance()
     {
