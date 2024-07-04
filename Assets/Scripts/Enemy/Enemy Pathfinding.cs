@@ -28,4 +28,9 @@ public class EnemyPathfinding : MonoBehaviour
     {
         moveDir = targetPosition; // 移動方向を設定する
     }
+
+    public void StopMoving()
+    {
+        moveDir = Vector3.zero;
+    }
 }

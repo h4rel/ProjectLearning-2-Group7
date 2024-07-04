@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] private float roamChangeDirFloat = 2f;
+    [SerializeField] private float attackRange = 5f;
+    [SerializeField] private MonoBehaviour enemyType;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private bool stopMovingWhileSttacking = false;
+
+    private bool canAttack = true;
+
     // 敵の状態を表す列挙型
     private enum State
     {
-        Roaming // 散策中の状態
+        Roaming, // 散策中の状態
+        Attacking
     }
+
+    private Vector2 roamPosition;
+    private float timeRoaming = 0f;
 
     private State state; // 現在の状態
     private EnemyPathfinding enemyPathfinding; // 敵のパスファインディングクラス
@@ -21,23 +33,81 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(RoamingRoutine()); // 散策ルーチンを開始
+        roamPosition = GetRoamingPosition();
     }
 
-    // 散策ルーチン
-    private IEnumerator RoamingRoutine()
+    private void Update()
     {
-        while (state == State.Roaming) // 散策中の状態が続く限りループ
+        MovementStateControl();
+    }
+
+    private void MovementStateControl()
+    {
+        switch (state)
         {
-            Vector2 roamPosition = GetRoamingPosition(); // 散策位置を取得
-            enemyPathfinding.MoveTo(roamPosition); // 散策位置へ移動
-            yield return new WaitForSeconds(2f); // 2秒待機
+            default:
+            case State.Roaming:
+                Roaming();
+                break;
+
+            case State.Attacking:
+                Attacking();
+                break;
         }
+    }
+
+    private void Roaming()
+    {
+        timeRoaming += Time.deltaTime;
+
+        enemyPathfinding.MoveTo(roamPosition);
+
+        if(Vector2.Distance(transform.position, PlayerControllers.Instance.transform.position) < attackRange)
+        {
+            state = State.Attacking;
+        }
+
+        if(timeRoaming > roamChangeDirFloat)
+        {
+            roamPosition = GetRoamingPosition();
+        }
+    }
+
+    private void Attacking() 
+    { 
+        if(Vector2.Distance(transform.position, PlayerControllers.Instance.transform.position)>attackRange)
+        {
+            state = State.Roaming;
+        }
+
+        if (attackRange != 0 && canAttack)
+        {
+            canAttack = false;
+            (enemyType as IEnemy).Attack();
+
+            if (stopMovingWhileSttacking)
+            {
+                enemyPathfinding.StopMoving();
+            }
+            else
+            {
+                enemyPathfinding.MoveTo(roamPosition);
+            }
+
+            StartCoroutine(AttackCooldownRoutine());
+        }
+    }
+
+    private IEnumerator AttackCooldownRoutine()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // 散策位置をランダムに生成
     private Vector2 GetRoamingPosition()
     {
+        timeRoaming = 0f;
         return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized; // ランダムな方向を正規化して返す
     }
 }
