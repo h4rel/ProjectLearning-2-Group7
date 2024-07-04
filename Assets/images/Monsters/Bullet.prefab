@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7adcc17c8caa81f48803d6a3d6d1a8b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,6 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  particleOnHitPrefabVFX: {fileID: 2967834584706884809, guid: 3ed902277fad12e4590b2f35e79fef74, type: 3}
+  particleOnHitPrefabVFX: {fileID: 8549191430966002898, guid: 50801d945fbbf214090a0951cc82403d, type: 3}
   isEnemyProjectile: 1
   projectileRange: 10
