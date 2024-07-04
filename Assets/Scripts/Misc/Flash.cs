@@ -13,12 +13,7 @@ public class Flash : MonoBehaviour
 
     private void Awake()
     {
-        enemyHealth = GetComponent<EnemyHealth>(); // 敵のヘルスコンポーネントを取得
-        if (enemyHealth == null)
-        {
-            Debug.LogWarning("EnemyHealth component not found on " + gameObject.name);
-        }
-
+        enemyHealth = GetComponent<EnemyHealth>(); // 敵のヘルスコンポーネントを取得      
         spriteRenderer = GetComponent<SpriteRenderer>(); // スプライトレンダラーコンポーネントを取得
         if (spriteRenderer == null)
         {

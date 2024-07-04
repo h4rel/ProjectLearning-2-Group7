@@ -12,7 +12,6 @@ public class PlayerControllers : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
-    private Animator myAnimator;
     private SpriteRenderer mySpriteRender;
     private Knockback knockback;
 
@@ -24,7 +23,6 @@ public class PlayerControllers : MonoBehaviour
 
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
         mySpriteRender = GetComponent<SpriteRenderer>();
         knockback = GetComponent<Knockback>();
     }
@@ -33,6 +31,12 @@ public class PlayerControllers : MonoBehaviour
     {
         // 入力アクションの有効化
         playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // 入力アクションの無効化
+        playerControls.Disable();
     }
 
     private void Update()
@@ -50,16 +54,13 @@ public class PlayerControllers : MonoBehaviour
 
     private void PlayerInput()
     {
-        // 入力アクションから移動方向を取得し、アニメーターにパラメーターとして渡す
+        // 入力アクションから移動方向を取得
         movement = playerControls.Movement.Move.ReadValue<Vector2>();
-
-        myAnimator.SetFloat("moveX", movement.x);
-        myAnimator.SetFloat("moveY", movement.y);
     }
 
     private void Move()
     {
-        if(knockback.gettingKnockedBack) { return; }
+        if (knockback.gettingKnockedBack) { return; }
 
         // プレイヤーを移動させる処理
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));

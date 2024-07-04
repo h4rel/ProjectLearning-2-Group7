@@ -10,10 +10,16 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float projectileRange = 10f;
 
     private Vector3 startPosition;
+    private Rigidbody2D rb;
 
     private void Start()
     {
         startPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D component is missing on the projectile.");
+        }
     }
 
     private void Update()
@@ -69,6 +75,13 @@ public class Projectile : MonoBehaviour
 
     private void MoveProjectile()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+        if (rb != null)
+        {
+            rb.velocity = transform.right * moveSpeed;
+        }
+        else
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+        }
     }
 }
