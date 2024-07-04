@@ -142,21 +142,6 @@ public class Sword : MonoBehaviour
             Debug.LogError("ActiveWeapon is not assigned in MouseFollowWithOffset.");
             return;
         }
-
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(playerControllers.transform.position);
-
-        float angle = Mathf.Atan2(mousePos.y - playerScreenPoint.y, mousePos.x - playerScreenPoint.x) * Mathf.Rad2Deg;
-
-        if (mousePos.x < playerScreenPoint.x)
-        {
-            activeWeapon.transform.rotation = Quaternion.Euler(0, -180, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, -180, 0);
-        }
-        else
-        {
-            activeWeapon.transform.rotation = Quaternion.Euler(0, 0, angle);
-            weaponCollider.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
     }
+
 }
