@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlashAnim : MonoBehaviour
 {
-    private ParticleSystem ps; // ParticleSystem•≥•Û•›©`•Õ•Û•»§Ú±£≥÷§π§Îâ‰ ˝
+    private ParticleSystem ps; // ParticleSystem•≥•Û•›©`•Õ•Û•»§Ú±£≥÷§π§ÅE‰ ˝
 
     private void Awake()
     {
-        ps = GetComponent<ParticleSystem>(); // §≥§ŒGameObject§À•¢•ø•√•¡§µ§Ï§øParticleSystem•≥•Û•›©`•Õ•Û•»§Ú»°µ√
+        ps = GetComponent<ParticleSystem>(); // §≥§ŒGameObject§À•¢•ø•√•¡§µ§ÅEøParticleSystem•≥•Û•›©`•Õ•Û•»§Ú»°µ√
     }
 
     private void Update()
@@ -16,7 +16,7 @@ public class SlashAnim : MonoBehaviour
         // ParticleSystem§¨¥Ê‘⁄§∑°¢§´§ƒ…˙¥Ê§∑§∆§§§ §§àˆ∫œ
         if (ps && !ps.IsAlive())
         {
-            DestroySelf(); // §≥§ŒGameObject§Ú∆∆â≤§π§Î•·•Ω•√•…§Ú∫Ù§”≥ˆ§π
+            DestroySelf(); // §≥§ŒGameObject§Ú∆∆â≤§π§ÅE·•Ω•√•…§Ú∫Ù§”≥ˆ§π
         }
     }
 
@@ -25,13 +25,13 @@ public class SlashAnim : MonoBehaviour
         Destroy(gameObject); // §≥§ŒGameObject§Ú∆∆â≤
     }
 
-    // •π•È•√•∑•Â•®•’•ß•Ø•»§Ú‘Ÿ…˙§π§Î•·•Ω•√•…
+    // •π•È•√•∑•Â•®•’•ß•Ø•»§Ú‘Ÿ…˙§π§ÅE·•Ω•√•…
     public void PlaySlashEffect()
     {
         if (ps != null)
         {
-            Debug.Log("•π•È•√•∑•Â•—©`•∆•£•Ø•Î•®•’•ß•Ø•»§Ú‘Ÿ…˙");
-            ps.Play(); // •—©`•∆•£•Ø•Î•∑•π•∆•‡§Ú‘Ÿ…˙
+            Debug.Log("•π•È•√•∑•Â•—©`•∆•£•Ø•ÅE®•’•ß•Ø•»§Ú‘Ÿ…ÅE");
+            ps.Play(); // •—©`•∆•£•Ø•ÅE∑•π•∆•‡§Ú‘Ÿ…ÅE
         }
     }
 }

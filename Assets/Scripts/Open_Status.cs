@@ -6,12 +6,18 @@ using TMPro;
 
 public class Open_Status : MonoBehaviour
 {
+    [SerializeField] private GameObject now;
 
-    [SerializeField] private Canvas panel;
+    [SerializeField] private GameObject to_open;
 
     [SerializeField] private TextMeshProUGUI tmp;
 
     [SerializeField] private string s;
+
+    private void Start()
+    {
+        to_open.SetActive(false);
+    }
 
     public void OnPointerEnter()
     {
@@ -25,7 +31,9 @@ public class Open_Status : MonoBehaviour
 
     public void OnPointerClick()
     {
-        panel.enabled = true;
+        tmp.text = s;
+        to_open.SetActive(true);
+        now.SetActive(false);
     }
 
 }
