@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int startingHealth = 3; 
+    [SerializeField] private int startingHealth = 100; 
     [SerializeField] private GameObject deathVFXPrefab; 
 
     private int currentHealth; 
@@ -24,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        currentHealth = Math.Max(currentHealth - damage, 0);
         knockback.GetKnockedBack(PlayerControllers.Instance.transform, 5f); 
         StartCoroutine(flash.FlashRoutine()); 
     }
