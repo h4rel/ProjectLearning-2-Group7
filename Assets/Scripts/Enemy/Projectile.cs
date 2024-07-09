@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 22f;
     [SerializeField] private GameObject particleOnHitPrefabVFX;
-    [SerializeField] private bool isEnemyProjectile = false;
+    [SerializeField] private bool isEnemyProjectile;
     [SerializeField] private float projectileRange = 10f;
 
     private Vector3 startPosition;
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         this.moveSpeed = moveSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Projectile hit something: " + other.gameObject.name);
 
@@ -59,6 +59,10 @@ public class Projectile : MonoBehaviour
                 enemyHealth.TakeDamage(1);
                 PlayHitEffectAndDestroy();
             }
+            else if (enemyHealth != null)
+            {
+                Debug.Log("Projectile hit an enemy: " + enemyHealth.gameObject.name);
+            }
             else
             {
                 Debug.Log("Projectile hit something else.");
@@ -72,9 +76,13 @@ public class Projectile : MonoBehaviour
         if (particleOnHitPrefabVFX != null)
         {
             GameObject vfx = Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-            Destroy(vfx, 1f); // •—©`•∆•£•Ø•Î•®•’•ß•Ø•»§Ú1√Î··§À∆∆â≤£®±ÿ“™§ÀèÍ§∏§∆â‰∏¸£©
+            Destroy(vfx, 1f); // •—©`•∆•£•Ø•ÅE®•’•ß•Ø•»§ÅE√ÅE·§À∆∆â≤£®±ÿ“™§ÀèÍ§∏§∆â‰∏ÅE©
         }
-        Destroy(gameObject); // •◊•Ì•∏•ß•Ø•ø•§•Î§Ú∆∆â≤
+        else
+        {
+            Debug.Log("NO VFX");
+        }
+        Destroy(gameObject); // •◊•˙¡∏•ß•Ø•ø•§•ÅEÚ∆∆â≤
     }
 
     private void DetectFireDistance()
