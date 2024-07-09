@@ -10,14 +10,14 @@ public class Open_Status : MonoBehaviour
 
     [SerializeField] private GameObject to_open;
 
+    [SerializeField] private List<GameObject> to_close;
+
     [SerializeField] private TextMeshProUGUI tmp;
 
     [SerializeField] private string s;
 
-    private void Start()
-    {
-        to_open.SetActive(false);
-    }
+    [SerializeField] private int close_option;
+
 
     public void OnPointerEnter()
     {
@@ -33,7 +33,14 @@ public class Open_Status : MonoBehaviour
     {
         tmp.text = s;
         to_open.SetActive(true);
-        now.SetActive(false);
+        foreach (GameObject obj in to_close)
+        {
+            obj.SetActive(false);
+        }
+        if (close_option > 0)
+        {
+            now.SetActive(false);
+        }
     }
 
 }
