@@ -9,6 +9,8 @@ public class PlayerControllers : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 1f;
 
+    AudioManger audioManger;
+
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
@@ -25,6 +27,7 @@ public class PlayerControllers : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mySpriteRender = GetComponent<SpriteRenderer>();
         knockback = GetComponent<Knockback>();
+        audioManger = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManger>(); //Add Music
     }
 
     private void OnEnable()

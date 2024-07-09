@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 1726898264}
   m_Layer: 0
   m_Name: Audio Manger
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1194,6 +1194,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1491788852173543399, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
+      propertyPath: burstCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491788852173543399, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
+      propertyPath: bulletPrefabs
+      value: 
+      objectReference: {fileID: 520125772}
+    - target: {fileID: 1491788852173543399, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
+      propertyPath: bulletMoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3321217138000852806, guid: 00b51601f9fba0147a1a144d78e0728c, type: 3}
       propertyPath: m_Name
       value: mg_front1
@@ -1255,6 +1267,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4052027974441298009, guid: 1b5b431042650c14ba88793f5607837f, type: 3}
+      propertyPath: burstCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5266571923286945447, guid: 1b5b431042650c14ba88793f5607837f, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -1298,14 +1314,6 @@ PrefabInstance:
     - target: {fileID: 5592021613158601443, guid: 1b5b431042650c14ba88793f5607837f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732868607260282221, guid: 1b5b431042650c14ba88793f5607837f, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732868607260282221, guid: 1b5b431042650c14ba88793f5607837f, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 682900963
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
