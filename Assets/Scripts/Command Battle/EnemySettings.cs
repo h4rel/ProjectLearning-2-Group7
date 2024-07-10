@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class EnemySettings : MonoBehaviour
 {
@@ -9,18 +10,20 @@ public class EnemySettings : MonoBehaviour
     [SerializeField] private int ATK = 10;
     [SerializeField] private GameObject deathVFXPrefab;
     [SerializeField] private EnemyHPController hpcont;
+    [SerializeField] private TextMeshProUGUI _name;
 
     private int currentHP;
-    private Flash flash;
+    private newFlash flash;
 
     private void Awake()
     {
-        flash = GetComponent<Flash>();
+        flash = GetComponent<newFlash>();
     }
 
     private void Start()
     {
         currentHP = maxHP;
+        _name.SetText(this.name);
     }
 
     public void TakeDamage(int damage)

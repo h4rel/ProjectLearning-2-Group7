@@ -23,7 +23,7 @@ public class BattleText : MonoBehaviour
     [SerializeField] private float _delayDuration = 0.1f;
 
     // 演出処理に使用する内部変数
-    private bool _isRunning;
+    public bool _isRunning;
     private float _remainTime;
     private int _currentMaxVisibleCharacters;
 

@@ -11,12 +11,12 @@ public class PlayerSettings : MonoBehaviour
     private int currentHP;
     private int maxHP;
     private int ATK;
-    private Flash flash;
+    private newFlash flash;
     
 
     private void Awake()
     {
-        flash = GetComponent<Flash>();
+        flash = GetComponent<newFlash>();
     }
 
     private void Start()
@@ -31,6 +31,13 @@ public class PlayerSettings : MonoBehaviour
         currentHP = Math.Max(currentHP - damage, 0);
         hpcont.updateHP();
         StartCoroutine(flash.FlashRoutine());
+    }
+
+    public void Healing(int heal)
+    {
+        currentHP = Math.Min(currentHP + heal, maxHP);
+        hpcont.updateHP();
+        StartCoroutine(flash.GFlashRoutine());
     }
 
     public void DetectDeath()
