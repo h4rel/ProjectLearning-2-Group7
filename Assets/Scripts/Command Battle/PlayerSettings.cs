@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class EnemySettings : MonoBehaviour
+public class PlayerSettings : MonoBehaviour
 {
-    [SerializeField] private int maxHP = 100;
-    [SerializeField] private int ATK = 10;
     [SerializeField] private GameObject deathVFXPrefab;
-    [SerializeField] private EnemyHPController hpcont;
+    [SerializeField] private PlayerHPController hpcont;
 
     private int currentHP;
+    private int maxHP;
+    private int ATK;
     private Flash flash;
+    
 
     private void Awake()
     {
@@ -20,7 +21,9 @@ public class EnemySettings : MonoBehaviour
 
     private void Start()
     {
-        currentHP = maxHP;
+        ATK = GlobalVariables.ATK;
+        currentHP = GlobalVariables.maxHP;
+        maxHP = GlobalVariables.maxHP;
     }
 
     public void TakeDamage(int damage)

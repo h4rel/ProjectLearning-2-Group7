@@ -43,6 +43,9 @@ public class BattleText : MonoBehaviour
         _currentMaxVisibleCharacters = 0;
         _target.enabled = false;
 
+
+        return;
+
     }
 
     private void Update()

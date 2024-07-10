@@ -14,9 +14,10 @@ public class GlobalVariables : MonoBehaviour
     public static int credit = 0;
     // 残りライフ数
     public static int life = 4;
-    // HP(最大、現在)
+    // HP(最大)
     public static int maxHP = 30;
-    public static int currentHP = 30;
+    // 攻撃力
+    public static int ATK = 10;
     // 経過時間の管理
     public static int minutes = 0;
     public static int seconds = 0;
