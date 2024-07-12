@@ -3257,6 +3257,8 @@ MonoBehaviour:
   p_text: {fileID: 489977388}
   p_command: {fileID: 1289747216}
   p_item: {fileID: 784276438}
+  result: ResultScene
+  retry: RetireScene
 --- !u!1 &1911504979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,7 +3364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635954590d2a8b34d94d209b891a04cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 10
   ATK: 10
   deathVFXPrefab: {fileID: 8549191430966002898, guid: 10fe8a111addd254da635a6ed503d15d, type: 3}
   hpcont: {fileID: 1911504983}

@@ -3,20 +3,33 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class EnemySettings : MonoBehaviour
 {
-    [SerializeField] private int maxHP = 100;
-    [SerializeField] private int ATK = 10;
+    private int maxHP;
+    private int ATK;
     [SerializeField] private GameObject deathVFXPrefab;
     [SerializeField] private EnemyHPController hpcont;
     [SerializeField] private TextMeshProUGUI _name;
+
+    public struct enemyset
+    {
+        public string e_name;
+        public int hp;
+        public int atk;
+    }
+
+    public static enemyset[] eset = new enemyset[50];
+
 
     private int currentHP;
     private newFlash flash;
 
     private void Awake()
     {
+        eset[0].e_name = "èÓïÒçHäwäTò_";
+
         flash = GetComponent<newFlash>();
     }
 
@@ -33,14 +46,6 @@ public class EnemySettings : MonoBehaviour
         StartCoroutine(flash.FlashRoutine());
     }
 
-    public void DetectDeath()
-    {
-        if (currentHP <= 0)
-        {
-            Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
 
     public int getcurrentHP()
     {

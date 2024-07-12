@@ -36,15 +36,6 @@ public class newFlash : MonoBehaviour
             yield return new WaitForSeconds(restoreDefaultMatTime); // 一定時間待機
             image.material = defaultMat; // 元のマテリアルに戻す
         }
-
-        if (enemyHealth != null)
-        {
-            enemyHealth.DetectDeath(); // 敵の死亡を確認
-        }
-        else
-        {
-            Debug.Log("EnemyHealth component is not attached to " + gameObject.name + ", skipping DetectDeath.");
-        }
     }
 
     public IEnumerator GFlashRoutine()
@@ -54,15 +45,6 @@ public class newFlash : MonoBehaviour
             image.material = GreenFlashMat; // マテリアルを一時的に白フラッシュマテリアルに変更
             yield return new WaitForSeconds(restoreDefaultMatTime); // 一定時間待機
             image.material = defaultMat; // 元のマテリアルに戻す
-        }
-
-        if (enemyHealth != null)
-        {
-            enemyHealth.DetectDeath(); // 敵の死亡を確認
-        }
-        else
-        {
-            Debug.Log("EnemyHealth component is not attached to " + gameObject.name + ", skipping DetectDeath.");
         }
     }
 }

@@ -40,14 +40,6 @@ public class PlayerSettings : MonoBehaviour
         StartCoroutine(flash.GFlashRoutine());
     }
 
-    public void DetectDeath()
-    {
-        if (currentHP <= 0)
-        {
-            Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
 
     public int getcurrentHP()
     {

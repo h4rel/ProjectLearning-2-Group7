@@ -18,6 +18,14 @@ public class GlobalVariables : MonoBehaviour
     public static int maxHP = 30;
     // 攻撃力
     public static int ATK = 10;
+
+
+    public static int building = -1;
+    public static List<int> enter_times = new List<int> { 0, 0, 0, 0, 0 };
+
+    public static int battleresult = 0;
+
+
     // 経過時間の管理
     public static int minutes = 0;
     public static int seconds = 0;
