@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using JetBrains.Annotations;
 
 public class Battle : MonoBehaviour
 {
@@ -49,6 +50,8 @@ public class Battle : MonoBehaviour
         p_command.SetActive(false);
         p_item.SetActive(false);
 
+
+
         enset = enemy.GetComponent<EnemySettings>();
         rand = new System.Random(); //Time?
         pn = players.Count;
@@ -68,7 +71,8 @@ public class Battle : MonoBehaviour
 
     private IEnumerator first()
     {
-        text.Show(enemy.name + "があらわれた！");
+        yield return new WaitForSeconds(1);
+        text.Show(enset.getname() + "があらわれた！");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
         yield return StartCoroutine(Fight());
@@ -81,7 +85,6 @@ public class Battle : MonoBehaviour
         while (end == 0)
         {
             OrderDecider();
-            Debug.Log(order[0] + " " + order[1]);
             foreach (int x in order)
             {
                 if (x == 0)
@@ -111,7 +114,6 @@ public class Battle : MonoBehaviour
                     if (enset.getcurrentHP() <= 0)
                     {
                         end = 1;
-                        Debug.Log("end to win");
                         break;
                     }
                 }
@@ -127,7 +129,7 @@ public class Battle : MonoBehaviour
 
     private IEnumerator Playerturn(int n)
     {
-        text.Show(players[n-1].name + "のターン");
+        text.Show(plset[n-1].getname() + "のターン");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
         p_text.SetActive(false);
@@ -141,23 +143,24 @@ public class Battle : MonoBehaviour
         switch (_action)
         {
             case "こうげき":
-                text.Show(players[n - 1].name + "のこうげき！");
+                text.Show(plset[n-1].getname() + "のこうげき！");
                 yield return new WaitUntil(() => !text._isRunning);
-                enset.TakeDamage(plset[n - 1].getATK());
+                int dmg = ATK_to_damage(plset[n - 1].getATK());
+                enset.TakeDamage(dmg);
                 yield return new WaitForSeconds(1);
 
-                text.Show(enemy.name + "に" + plset[n - 1].getATK() + "のダメージ");
+                text.Show(enset.getname() + "に" + dmg + "のダメージ");
                 yield return new WaitUntil(() => !text._isRunning);
                 yield return new WaitForSeconds(1);
                 break;
 
             case "やくそう":
-                text.Show(players[n-1].name + "はやくそうを使った");
+                text.Show(plset[n-1].getname() + "はやくそうを使った");
                 yield return new WaitUntil(() => !text._isRunning);
                 plset[n - 1].Healing(20);
                 yield return new WaitForSeconds(1);
 
-                text.Show(players[n - 1].name + "は20回復した");
+                text.Show(plset[n-1].getname() + "は20回復した");
                 yield return new WaitUntil(() => !text._isRunning);
                 yield return new WaitForSeconds(1);
                 break;
@@ -172,12 +175,13 @@ public class Battle : MonoBehaviour
         {
             target = rand.Next(0, pn);
         }
-        text.Show(enemy.name + "のこうげき！");
+        text.Show(enset.getname() + "のこうげき！");
         yield return new WaitUntil(() => !text._isRunning);
-        plset[target].TakeDamage(enset.getATK());
+        int dmg = ATK_to_damage(enset.getATK());
+        plset[target].TakeDamage(dmg);
         yield return new WaitForSeconds(1);
 
-        text.Show(players[target].name + "に" + enset.getATK() + "のダメージ");
+        text.Show(plset[target].getname() + "に" + dmg + "のダメージ");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
         if (plset[target].getcurrentHP() <= 0)
@@ -190,10 +194,18 @@ public class Battle : MonoBehaviour
         }
     }
 
+    private int ATK_to_damage(int atk)
+    {
+        float x = (float)rand.Next(80, 121)/100f;
+        return (int)(atk * x);
+        
+    }
+
 
     private void Win()
     {
-        text.Show(enemy.name + "をたおした！");
+        text.Show(enset.getname() + "をたおした！");
+        GlobalVariables.enter_times[GlobalVariables.building]++;
         Invoke("nextScene",4f);
         
     }

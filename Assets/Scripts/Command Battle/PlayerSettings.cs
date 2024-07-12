@@ -11,6 +11,7 @@ public class PlayerSettings : MonoBehaviour
     private int currentHP;
     private int maxHP;
     private int ATK;
+    private string _name;
     private newFlash flash;
     
 
@@ -24,6 +25,7 @@ public class PlayerSettings : MonoBehaviour
         ATK = GlobalVariables.ATK;
         currentHP = GlobalVariables.maxHP;
         maxHP = GlobalVariables.maxHP;
+        _name = GlobalVariables._name;
     }
 
     public void TakeDamage(int damage)
@@ -54,5 +56,10 @@ public class PlayerSettings : MonoBehaviour
     public int getATK()
     {
         return ATK;
+    }
+
+    public string getname()
+    {
+        return _name;
     }
 }
