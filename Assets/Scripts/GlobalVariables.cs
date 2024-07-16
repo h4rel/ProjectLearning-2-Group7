@@ -24,7 +24,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static int building = -1;
     public static List<int> enter_times = new List<int> { 0, 0, 0, 0, 0 };
-    public static int[,] id = new int[3, 4] { { 0, 1, 2, 3 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
+    public static int[,] id = new int[3,4] { { 0, 1, 2, 3 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
     public static string beforeScene;
 
     public static int battleresult = 0;

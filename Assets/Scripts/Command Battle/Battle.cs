@@ -98,7 +98,7 @@ public class Battle : MonoBehaviour
                     yield return StartCoroutine(Enemyturn());
                     if (dead >= 0)
                     {
-                        text.Show(players[dead].name + "は力尽きてしまった...");
+                        text.Show(plset[dead].getname() + "は力尽きてしまった...");
                         yield return new WaitUntil(() => !text._isRunning);
                         yield return new WaitForSeconds(1);
                         alive--;
