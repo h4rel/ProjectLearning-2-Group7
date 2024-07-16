@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SquadMatchScene
+  sceneName: SquadMatchSceneMulti
 --- !u!1 &995568728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: DuoMatchScene
+  sceneName: DuoMatchSceneMulti
 --- !u!1 &1323748705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: TrioMatchScene
+  sceneName: TrioMatchSceneMulti
 --- !u!1 &1723767240
 GameObject:
   m_ObjectHideFlags: 0
