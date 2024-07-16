@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -80,43 +80,43 @@ public class EnemySettings : MonoBehaviour
 
     private void init()
     {
-        eset[0].e_name = "î•ñHŠwŠT˜_";
+        eset[0].e_name = "æƒ…å ±å·¥å­¦æ¦‚è«–";
         eset[0].hp = 20;
         eset[0].atk = 5;
-        eset[1].e_name = "î•ñƒŠƒeƒ‰ƒV";
+        eset[1].e_name = "æƒ…å ±ãƒªãƒ†ãƒ©ã‚·";
         eset[1].hp = 30;
         eset[1].atk = 10;
-        eset[2].e_name = "üŒ`‘ã”I";
+        eset[2].e_name = "ç·šå½¢ä»£æ•°I";
         eset[2].hp = 50;
         eset[2].atk = 15;
-        eset[3].e_name = "üŒ`‘ã”II";
+        eset[3].e_name = "ç·šå½¢ä»£æ•°II";
         eset[3].hp = 30;
         eset[3].atk = 10;
-        eset[4].e_name = "ŒvZ‹@ƒA[ƒLƒeƒNƒ`ƒƒ";
+        eset[4].e_name = "è¨ˆç®—æ©Ÿã‚¢ãƒ¼ã‚­ãƒ†ã‚¯ãƒãƒ£";
         eset[4].hp = 30;
         eset[4].atk = 10;
-        eset[5].e_name = "•¨—E‰»ŠwÀŒ±";
+        eset[5].e_name = "ç‰©ç†ãƒ»åŒ–å­¦å®Ÿé¨“";
         eset[5].hp = 30;
         eset[5].atk = 10;
-        eset[6].e_name = "ƒAƒ‹ƒSƒŠƒYƒ€‚Æƒf[ƒ^\‘¢";
+        eset[6].e_name = "ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ";
         eset[6].hp = 30;
         eset[6].atk = 10;
-        eset[7].e_name = "ƒvƒƒOƒ‰ƒ~ƒ“ƒO‰‰K‡T";
+        eset[7].e_name = "ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°æ¼”ç¿’â… ";
         eset[7].hp = 30;
         eset[7].atk = 10;
-        eset[8].e_name = "ƒvƒƒOƒ‰ƒ~ƒ“ƒO‰‰K‡U";
+        eset[8].e_name = "ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°æ¼”ç¿’â…¡";
         eset[8].hp = 30;
         eset[8].atk = 10;
-        eset[9].e_name = "ƒvƒƒWƒFƒNƒgƒ‰[ƒjƒ“ƒO";
+        eset[9].e_name = "ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ©ãƒ¼ãƒ‹ãƒ³ã‚°";
         eset[9].hp = 30;
         eset[9].atk = 10;
-        eset[10].e_name = "“dqî•ñHŠwÀŒ±";
+        eset[10].e_name = "é›»å­æƒ…å ±å·¥å­¦å®Ÿé¨“";
         eset[10].hp = 30;
         eset[10].atk = 10;
-        eset[11].e_name = "î•ñHŠw“Á•Ê‰‰K";
+        eset[11].e_name = "æƒ…å ±å·¥å­¦ç‰¹åˆ¥æ¼”ç¿’";
         eset[11].hp = 30;
         eset[11].atk = 10;
-        eset[12].e_name = "‘²‹ÆŒ¤‹†";
+        eset[12].e_name = "å’æ¥­ç ”ç©¶";
         eset[12].hp = 30;
         eset[12].atk = 10;
     }

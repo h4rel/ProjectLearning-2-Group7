@@ -19,6 +19,8 @@ public class GlobalVariables : MonoBehaviour
     // 攻撃力
     public static int ATK = 10;
 
+    public static int NOP = 2;
+
 
     public static int building = -1;
     public static List<int> enter_times = new List<int> { 0, 0, 0, 0, 0 };

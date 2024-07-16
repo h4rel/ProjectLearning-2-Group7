@@ -17,6 +17,8 @@ public class Battle : MonoBehaviour
 
     [SerializeField] private List<GameObject> players;
 
+    [SerializeField] private List<GameObject> pl_panel;
+
     [SerializeField] private GameObject p_text;
     [SerializeField] private GameObject p_command;
     [SerializeField] private GameObject p_item;
@@ -54,7 +56,11 @@ public class Battle : MonoBehaviour
 
         enset = enemy.GetComponent<EnemySettings>();
         rand = new System.Random(); //Time?
-        pn = players.Count;
+        pn = GlobalVariables.NOP;
+        for (int i = 3; i > pn-1; i--)
+        {
+            pl_panel[i].SetActive(false);
+        }
         alive = pn;
         order = new int[pn+1];
         plset = new List<PlayerSettings>();
