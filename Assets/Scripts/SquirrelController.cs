@@ -13,11 +13,24 @@ public class SquirrelController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;  // 注意：プレイヤーオブジェクトにPlayerタグを付けておく
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Player object not found. Make sure there is a GameObject with the tag 'Player' in the scene.");
+            }
+        }
     }
 
     void Update()
     {
+        if (player == null) return;
+
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
         if (distanceToPlayer < detectionRadius && !isFading)
