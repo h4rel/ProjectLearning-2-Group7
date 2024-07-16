@@ -10,14 +10,12 @@ public class AudioManger : MonoBehaviour
 
     [Header("-----Audio Clip-----")]
     public AudioClip background;
-    public AudioClip death;
     public AudioClip start;
-    public AudioClip shoot;
     public AudioClip battle;
 
     private void Start()
     {
-        musicSource.clip = battle;
+        musicSource.clip = start;
         musicSource.Play();
     }
 

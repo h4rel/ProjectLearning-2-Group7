@@ -9,11 +9,33 @@ public class OnMouseDown_Login : MonoBehaviour
 {
     public InputField usernameInput; // ユーザネーム入力フィールドをInspectorから指定
     public string loginUrl = "http://localhost:5000/login"; // サーバのURL
+    public AudioSource clickSound; // オーディオソースをInspectorから指定
+
+    // ボタンをクリックした際に音を再生する関数
+    public void PlayClickSound()
+    {
+        // ユーザネームが空でない場合にクリック音を再生
+        if (!string.IsNullOrEmpty(usernameInput.text) && clickSound != null)
+        {
+            clickSound.Play();
+        }
+    }
 
     void OnMouseDown()
     {
-        //StartCoroutine(Login());
-        SceneManager.LoadScene("SelectGameScene");  // サーバプログラム無しで実行する時
+        // ユーザネームが空でない場合のみ処理を続ける
+        if (!string.IsNullOrEmpty(usernameInput.text))
+        {
+            // クリック音を再生
+            PlayClickSound();
+
+            // シーンを変更
+            SceneManager.LoadScene("SelectGameScene");  // サーバプログラム無しで実行する時
+        }
+        else
+        {
+            Debug.Log("Username is empty");
+        }
     }
 
     IEnumerator Login()
