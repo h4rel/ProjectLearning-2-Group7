@@ -17,10 +17,21 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnConnectedToMaster() {
-        // Inspectorで設定したルーム番号を使ってルーム名を設定する
-        string roomName = $"Room{roomNumber}";
-        // ルーム名を使ってルームに参加する（ルームが存在しなければ作成して参加する）
-        PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+        if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+        {
+            // 外部入力から取得したルーム名でルームに参加または作成
+            string room = PlayerData.Instance.RoomName;
+            string roomName = $"{room}{roomNumber}";
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+        }
+        else
+        {
+            Debug.LogWarning("Room name is not set.");
+        }
+        // // Inspectorで設定したルーム番号を使ってルーム名を設定する
+        // string roomName = $"Room{roomNumber}";
+        // // ルーム名を使ってルームに参加する（ルームが存在しなければ作成して参加する）
+        // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
     }
 
     // ゲームサーバーへの接続が成功した時に呼ばれるコールバック

@@ -14,10 +14,21 @@ public class Match : MonoBehaviourPunCallbacks
     }
 
     public override void OnConnectedToMaster() {
-        Debug.Log("Connected to Master");
-        string roomName = $"MatchRoom{maxPlayers}"; // マッチ人数に基づいた部屋名を設定
-        Debug.Log($"Attempting to join or create room: {roomName}");
-        PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = (byte)maxPlayers }, TypedLobby.Default);
+        if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+        {
+            // 外部入力から取得したルーム名でルームに参加または作成
+            string room = PlayerData.Instance.RoomName;
+            string roomName = $"{room}{maxPlayers}";
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = (byte)maxPlayers }, TypedLobby.Default);
+        }
+        else
+        {
+            Debug.LogWarning("Room name is not set.");
+        }
+        // Debug.Log("Connected to Master");
+        // string roomName = $"MatchRoom{maxPlayers}"; // マッチ人数に基づいた部屋名を設定
+        // Debug.Log($"Attempting to join or create room: {roomName}");
+        // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = (byte)maxPlayers }, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom() {
