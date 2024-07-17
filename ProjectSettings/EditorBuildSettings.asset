@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MultiScene/StartFieldSceneMulti.unity
@@ -74,4 +75,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Field03Scene.unity
     guid: 8a972d1c9d6604b56bead6f2ff78c70a
+=======
+  m_Scenes: []
+>>>>>>> 611726e64a760e4339ed522056880143791ab4f1
   m_configObjects: {}
