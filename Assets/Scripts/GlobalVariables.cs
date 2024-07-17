@@ -25,7 +25,7 @@ public class GlobalVariables : MonoBehaviour
 
 
     // 自分のid(マッチング時に決定するもの)
-    public static int mynum = 0;
+    public static int mynum = 1;
 
 
 

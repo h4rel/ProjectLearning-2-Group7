@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -10,11 +10,13 @@ using UnityEngine.EventSystems;
 using JetBrains.Annotations;
 using Photon.Pun;
 using Photon.Realtime;
-
+using System.Linq.Expressions;
+using TMPro;
 
 public class MultiBattle : MonoBehaviourPunCallbacks
 {
     [SerializeField] private BattleText text;
+    [SerializeField] private TextMeshProUGUI waitmsg;
 
     [SerializeField] private GameObject enemy;
 
@@ -25,6 +27,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject p_text;
     [SerializeField] private GameObject p_command;
     [SerializeField] private GameObject p_item;
+    [SerializeField] private GameObject p_waiting;
 
     [SerializeField] private string result;
     [SerializeField] private string retry;
@@ -51,11 +54,47 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private System.Random rand;
 
+
+
+
+    ExitGames.Client.Photon.Hashtable roomHash;
+
+
+
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+        object value = null;
+        if (propertiesThatChanged.TryGetValue("a", out value))
+        {
+            _action = (string)value;
+        }
+        if (propertiesThatChanged.TryGetValue("d", out value))
+        {
+            damage = (int)value;
+        }
+        roomHash["a"] = _action;
+        roomHash["d"] = damage;
+
+        _decided = true;
+
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+
+        roomHash = new ExitGames.Client.Photon.Hashtable();
+        roomHash.Add("a", _action);
+        roomHash.Add("d", damage);
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+        }
+
         p_command.SetActive(false);
         p_item.SetActive(false);
+        p_waiting.SetActive(false);
 
         enset = enemy.GetComponent<EnemySettings>();
         rand = new System.Random(); //Time
@@ -81,7 +120,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private IEnumerator first()
     {
         yield return new WaitForSeconds(1);
-        text.Show(enset.getname() + "Ç™Ç†ÇÁÇÌÇÍÇΩÅI");
+        text.Show(enset.getname() + "„Åå„ÅÇ„Çâ„Çè„Çå„ÅüÔºÅ");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
         yield return StartCoroutine(Fight());
@@ -101,7 +140,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
                     yield return StartCoroutine(Enemyturn());
                     if (dead >= 0)
                     {
-                        text.Show(plset[dead].getname() + "ÇÕóÕêsÇ´ÇƒÇµÇ‹Ç¡ÇΩ...");
+                        text.Show(plset[dead].getname() + "„ÅØÂäõÂ∞Ω„Åç„Å¶„Åó„Åæ„Å£„Åü...");
                         yield return new WaitUntil(() => !text._isRunning);
                         yield return new WaitForSeconds(1);
                         alive--;
@@ -142,38 +181,64 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private IEnumerator Playerturn(int n)
     {
-        text.Show(plset[n - 1].getname() + "ÇÃÉ^Å[Éì");
+        text.Show(plset[n - 1].getname() + "„ÅÆ„Çø„Éº„É≥");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
-        p_text.SetActive(false);
         _decided = false;
-        p_command.SetActive(true);
-        yield return new WaitUntil(() => _decided);
+        if (n == GlobalVariables.mynum)
+        {
+            p_text.SetActive(false);
+            p_command.SetActive(true);
+            Debug.Log("before");
+            yield return new WaitUntil(() => _decided);
+            Debug.Log("better");
+            roomHash["a"] = _action;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+            Debug.Log("good");
+
+        }
+        else
+        {
+            waitmsg.SetText(plset[n - 1].getname() + "„ÅåË°åÂãï„ÇíÈÅ∏Êäû‰∏≠...");
+            p_waiting.SetActive(true);
+            yield return new WaitUntil(() => _decided);
+            yield return new WaitForSeconds(1);
+        }
         p_command.SetActive(false);
         p_item.SetActive(false);
+        p_waiting.SetActive(false);
         p_text.SetActive(true);
 
         switch (_action)
         {
-            case "Ç±Ç§Ç∞Ç´":
-                text.Show(plset[n - 1].getname() + "ÇÃÇ±Ç§Ç∞Ç´ÅI");
+            case "„Åì„ÅÜ„Åí„Åç":
+                text.Show(plset[n - 1].getname() + "„ÅÆ„Åì„ÅÜ„Åí„ÅçÔºÅ");
                 yield return new WaitUntil(() => !text._isRunning);
-                int dmg = ATK_to_damage(plset[n - 1].getATK());
-                enset.TakeDamage(dmg);
+                _decided = false;
+                if (PhotonNetwork.LocalPlayer.IsMasterClient)
+                {
+                    roomHash["d"] = ATK_to_damage(plset[n-1].getATK());
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+                }
+                else
+                {
+                    yield return new WaitUntil(() => _decided);
+                }
+                enset.TakeDamage(damage);
                 yield return new WaitForSeconds(1);
 
-                text.Show(enset.getname() + "Ç…" + dmg + "ÇÃÉ_ÉÅÅ[ÉW");
+                text.Show(enset.getname() + "„Å´" + damage + "„ÅÆ„ÉÄ„É°„Éº„Ç∏");
                 yield return new WaitUntil(() => !text._isRunning);
                 yield return new WaitForSeconds(1);
                 break;
 
-            case "Ç‚Ç≠ÇªÇ§":
-                text.Show(plset[n - 1].getname() + "ÇÕÇ‚Ç≠ÇªÇ§ÇégÇ¡ÇΩ");
+            case "„ÇÑ„Åè„Åù„ÅÜ":
+                text.Show(plset[n - 1].getname() + "„ÅØ„ÇÑ„Åè„Åù„ÅÜ„Çí‰Ωø„Å£„Åü");
                 yield return new WaitUntil(() => !text._isRunning);
                 plset[n - 1].Healing(20);
                 yield return new WaitForSeconds(1);
 
-                text.Show(plset[n - 1].getname() + "ÇÕ20âÒïúÇµÇΩ");
+                text.Show(plset[n - 1].getname() + "„ÅØ20ÂõûÂæ©„Åó„Åü");
                 yield return new WaitUntil(() => !text._isRunning);
                 yield return new WaitForSeconds(1);
                 break;
@@ -188,13 +253,22 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         {
             target = rand.Next(0, pn);
         }
-        text.Show(enset.getname() + "ÇÃÇ±Ç§Ç∞Ç´ÅI");
+        text.Show(enset.getname() + "„ÅÆ„Åì„ÅÜ„Åí„ÅçÔºÅ");
         yield return new WaitUntil(() => !text._isRunning);
-        int dmg = ATK_to_damage(enset.getATK());
-        plset[target].TakeDamage(dmg);
+        _decided = false;
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            roomHash["d"] = ATK_to_damage(enset.getATK());
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+        }
+        else
+        {
+            yield return new WaitUntil(()=> _decided);
+        }
+        plset[target].TakeDamage(damage);
         yield return new WaitForSeconds(1);
 
-        text.Show(plset[target].getname() + "Ç…" + dmg + "ÇÃÉ_ÉÅÅ[ÉW");
+        text.Show(plset[target].getname() + "„Å´" + damage + "„ÅÆ„ÉÄ„É°„Éº„Ç∏");
         yield return new WaitUntil(() => !text._isRunning);
         yield return new WaitForSeconds(1);
         if (plset[target].getcurrentHP() <= 0)
@@ -217,7 +291,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private void Win()
     {
-        text.Show(enset.getname() + "ÇÇΩÇ®ÇµÇΩÅI");
+        text.Show(enset.getname() + "„Çí„Åü„Åä„Åó„ÅüÔºÅ");
         GlobalVariables.enter_times[GlobalVariables.building]++;
         Invoke("nextScene", 4f);
 
@@ -226,7 +300,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private void Lose()
     {
-        text.Show("íPà ÇéÊÇÈÇ±Ç∆Ç™èoóàÇ»Ç©Ç¡ÇΩ");
+        text.Show("Âçò‰Ωç„ÇíÂèñ„Çã„Åì„Å®„ÅåÂá∫Êù•„Å™„Åã„Å£„Åü");
         Invoke("nextScene", 4f);
     }
 
@@ -235,29 +309,5 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         if (end > 0) SceneManager.LoadScene(result);
         else SceneManager.LoadScene(retry);
     }
-
-
-
-
-    // à»â∫ÅAÉ}ÉãÉ`ÉvÉåÉCéûÇ…äeílÇéÛÇØìnÇ∑ÇΩÇﬂÇÃÉÅÉ\ÉbÉh
-
-    [PunRPC]
-    private void changedamege(int dmg)
-    {
-        damage = dmg;
-    }
-
-    [PunRPC]
-
-    private void changeaction(string act)
-    {
-        _action = act;
-    }
-
-
-
-
-
-
 
 }

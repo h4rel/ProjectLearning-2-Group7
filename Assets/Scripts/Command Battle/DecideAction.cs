@@ -38,8 +38,8 @@ public class DecideAction : MonoBehaviour
         {
             now.SetActive(false);
         }
-        Battle._action = s;
-        Battle._decided = true;
+        MultiBattle._action = s;
+        MultiBattle._decided = true;
     }
 
 }
