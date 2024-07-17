@@ -18,8 +18,17 @@ public class GlobalVariables : MonoBehaviour
     public static int maxHP = 30;
     // 攻撃力
     public static int ATK = 10;
-
+    // プレイヤー人数
     public static int NOP = 2;
+
+
+
+
+    // 自分のid(マッチング時に決定するもの)
+    public static int mynum = 0;
+
+
+
 
 
     public static int building = -1;
