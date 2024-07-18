@@ -10,7 +10,7 @@ public class GlobalVariables : MonoBehaviour
     // 画面遷移の方向を保存する用の変数
     public static string dir = "start";
     // プレイヤー名
-    public static string _name = "Player2";
+    public static string _name = "Player1";
     // 取得単位数
     public static int credit = 0;
     // 残りライフ数
@@ -27,7 +27,7 @@ public class GlobalVariables : MonoBehaviour
 
 
     // 自分のid(マッチング時に決定するもの)
-    public static int mynum = 2;
+    public static int mynum = 1;
 
 
 

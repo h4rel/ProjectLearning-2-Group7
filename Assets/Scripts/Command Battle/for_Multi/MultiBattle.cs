@@ -12,6 +12,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Linq.Expressions;
 using TMPro;
+using Unity.VisualScripting;
 
 public class MultiBattle : MonoBehaviourPunCallbacks
 {
@@ -28,6 +29,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject p_command;
     [SerializeField] private GameObject p_item;
     [SerializeField] private GameObject p_waiting;
+    [SerializeField] private GameObject p_entry;
 
     [SerializeField] private string result;
     [SerializeField] private string retry;
@@ -74,7 +76,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         {
             damage = (int)value;
         }
-        if (propertiesThatChanged.TryGetValue("d", out value))
+        if (propertiesThatChanged.TryGetValue("t", out value))
         {
             target = (int)value;
         }
@@ -86,16 +88,24 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     }
 
+
+
     void Start()
     {
         p_command.SetActive(false);
         p_item.SetActive(false);
         p_waiting.SetActive(false);
+        p_entry.SetActive(true);
+        pl_panel[0].SetActive(false);
+        pl_panel[1].SetActive(false);
+        pl_panel[2].SetActive(false);
+        pl_panel[3].SetActive(false);
     }
 
 
     public void after_connected()
     {
+        Debug.Log("start battle");
         roomHash = new ExitGames.Client.Photon.Hashtable();
         roomHash.Add("a", _action);
         roomHash.Add("d", damage);
@@ -106,14 +116,38 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
         }
 
+        pn = GlobalVariables.NOP;
+        alive = pn;
+
+        plset = new List<PlayerSettings>();
+        for (int i = 0; i < pn; i++)
+        {
+            plset.Add(players[i].GetComponent<PlayerSettings>());
+        }
+
+
+        foreach (Player pl in PhotonNetwork.PlayerList)
+        {
+            int id = (int)pl.CustomProperties["pn"];
+            plset[id - 1].setname((string)pl.CustomProperties["n"]);
+            plset[id - 1].setHP((int)pl.CustomProperties["h"]);
+            plset[id - 1].setATK((int)pl.CustomProperties["a"]);
+            plset[id - 1].init();
+            if (id == 1)
+            {
+                PhotonNetwork.SetMasterClient(pl);
+            }
+        }
+
+        p_entry.SetActive(false);
+        for (int i = 0; i < pn; i++)
+        {
+            pl_panel[i].SetActive(true);
+        }
+
+
         enset = enemy.GetComponent<EnemySettings>();
         rand = new System.Random(); //Time
-        pn = GlobalVariables.NOP;
-        for (int i = 3; i > pn - 1; i--)
-        {
-            pl_panel[i].SetActive(false);
-        }
-        alive = pn;
         order = new int[pn + 1];
         plset = new List<PlayerSettings>();
         for (int i = 0; i < pn; i++)
@@ -212,7 +246,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             waitmsg.SetText(plset[n - 1].getname() + "が行動を選択中...");
             p_waiting.SetActive(true);
             yield return new WaitUntil(() => _decided);
-            yield return new WaitForSeconds(1);
+            for (int i = 0; i < 10; i++)
+            {
+                yield return null;
+            }
         }
         p_command.SetActive(false);
         p_item.SetActive(false);

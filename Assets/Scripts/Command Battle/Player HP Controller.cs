@@ -16,7 +16,7 @@ public class PlayerHPController : MonoBehaviour
 
     public void updateHP()
     {
-        bar.fillAmount = (float)player.getcurrentHP() / (float)GlobalVariables.maxHP;
-        text.SetText(player.getcurrentHP() + "/" + GlobalVariables.maxHP);
+        bar.fillAmount = (float)player.getcurrentHP() / (float)player.getmaxHP();
+        text.SetText(player.getcurrentHP() + "/" + player.getmaxHP());
     }
 }

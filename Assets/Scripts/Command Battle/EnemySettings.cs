@@ -93,7 +93,7 @@ public class EnemySettings : MonoBehaviour
         eset[3].hp = 100;
         eset[3].atk = 20;
         eset[4].e_name = "計算機アーキテクチャ";
-        eset[4].hp = 30;
+        eset[4].hp = 50;
         eset[4].atk = 10;
         eset[5].e_name = "物理・化学実験";
         eset[5].hp = 30;

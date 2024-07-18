@@ -33,7 +33,7 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
             Debug.Log("before create room");
             PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
             Debug.Log("after create room");
-            mb.after_connected();
+            //mb.after_connected();
         }
         else
         {
@@ -45,5 +45,32 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
         // string roomName = $"Room{roomNumber}";
         // // ルーム名を使ってルームに参加する（ルームが存在しなければ作成して参加する）
         // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        ExitGames.Client.Photon.Hashtable myHash = new ExitGames.Client.Photon.Hashtable();
+        myHash["n"] = GlobalVariables._name;
+        myHash["h"] = GlobalVariables.maxHP;
+        myHash["pn"] = GlobalVariables.mynum;
+        myHash["a"] = GlobalVariables.ATK;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(myHash);
+        Debug.Log("joinedroom");
+
+        Debug.Log("plnum =" + PhotonNetwork.CurrentRoom.PlayerCount);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == GlobalVariables.NOP)
+        {
+            Debug.Log("should start");
+            mb.Invoke("after_connected", 1);
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == GlobalVariables.NOP)
+        {
+            mb.Invoke("after_connected", 1);
+        }
+
     }
 }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class PlayerSettings : MonoBehaviour
 {
     [SerializeField] private GameObject deathVFXPrefab;
+    [SerializeField] private TextMeshProUGUI tmp;
     [SerializeField] private PlayerHPController hpcont;
 
     private int currentHP;
@@ -20,12 +22,12 @@ public class PlayerSettings : MonoBehaviour
         flash = GetComponent<newFlash>();
     }
 
-    private void Start()
+
+
+    public void init()
     {
-        ATK = GlobalVariables.ATK;
-        currentHP = GlobalVariables.maxHP;
-        maxHP = GlobalVariables.maxHP;
-        _name = GlobalVariables._name;
+        tmp.SetText(_name);
+        hpcont.updateHP();
     }
 
     public void TakeDamage(int damage)
@@ -61,5 +63,21 @@ public class PlayerSettings : MonoBehaviour
     public string getname()
     {
         return _name;
+    }
+
+    public void setname(string nm)
+    {
+        _name = nm;
+    }
+
+    public void setHP(int hp)
+    {
+        maxHP = hp;
+        currentHP = hp;
+    }
+
+    public void setATK(int atk)
+    {
+        ATK = atk;
     }
 }
