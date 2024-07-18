@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class DecideAction : MonoBehaviour
+public class MultiDecideAction : MonoBehaviour
 {
     [SerializeField] private GameObject now;
 
@@ -38,8 +38,8 @@ public class DecideAction : MonoBehaviour
         {
             now.SetActive(false);
         }
-        Battle._action = s;
-        Battle._decided = true;
+        MultiBattle._action = s;
+        MultiBattle._decided = true;
     }
 
 }

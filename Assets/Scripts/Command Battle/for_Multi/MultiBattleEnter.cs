@@ -1,0 +1,49 @@
+﻿using Photon.Pun;
+using Photon.Realtime;
+using Unity.VisualScripting;
+using UnityEngine;
+
+// MonoBehaviourPunCallbacksを継承して、PUNのコールバックを受け取れるようにする
+public class MultiBattleEnter : MonoBehaviourPunCallbacks
+{
+    [SerializeField] private MultiBattle mb;
+
+    // Inspectorで設定するためのpublicフィールドを追加
+    public int roomNumber = 1; // デフォルトのルーム番号を1に設定
+
+    private int triggerId = 0; // 初期化用の識別子
+
+    private void Start()
+    {
+        // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
+        PlayerData.Instance.RoomName = "aaa";     //遷移してこれるようになったら多分消す
+        PhotonNetwork.ConnectUsingSettings();
+        
+    }
+
+    // マスターサーバーへの接続が成功した時に呼ばれるコールバック
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("connected to master");
+        if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+        {
+            // 外部入力から取得したルーム名でルームに参加または作成
+            string room = PlayerData.Instance.RoomName;
+            string roomName = $"{room}{roomNumber}";
+            Debug.Log("before create room");
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+            Debug.Log("after create room");
+            mb.after_connected();
+        }
+        else
+        {
+            Debug.Log("no");
+            Debug.LogWarning("Room name is not set.");
+        }
+        Debug.Log("out");
+        // // Inspectorで設定したルーム番号を使ってルーム名を設定する
+        // string roomName = $"Room{roomNumber}";
+        // // ルーム名を使ってルームに参加する（ルームが存在しなければ作成して参加する）
+        // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+    }
+}

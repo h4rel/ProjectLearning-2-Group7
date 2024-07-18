@@ -38,6 +38,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private int damage;
 
+    private int target;
+
     private int pn;
 
     private int alive;
@@ -72,29 +74,37 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         {
             damage = (int)value;
         }
+        if (propertiesThatChanged.TryGetValue("d", out value))
+        {
+            target = (int)value;
+        }
         roomHash["a"] = _action;
         roomHash["d"] = damage;
+        roomHash["t"] = target;
 
         _decided = true;
 
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-
-        roomHash = new ExitGames.Client.Photon.Hashtable();
-        roomHash.Add("a", _action);
-        roomHash.Add("d", damage);
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
-        }
-
         p_command.SetActive(false);
         p_item.SetActive(false);
         p_waiting.SetActive(false);
+    }
+
+
+    public void after_connected()
+    {
+        roomHash = new ExitGames.Client.Photon.Hashtable();
+        roomHash.Add("a", _action);
+        roomHash.Add("d", damage);
+        roomHash.Add("t", target);
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            Debug.Log("master");
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+        }
 
         enset = enemy.GetComponent<EnemySettings>();
         rand = new System.Random(); //Time
@@ -217,7 +227,9 @@ public class MultiBattle : MonoBehaviourPunCallbacks
                 _decided = false;
                 if (PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
-                    roomHash["d"] = ATK_to_damage(plset[n-1].getATK());
+                    damage = ATK_to_damage(plset[n-1].getATK());
+                    roomHash["d"] = damage;
+                    yield return new WaitForSeconds(1);
                     PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
                 }
                 else
@@ -248,7 +260,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private IEnumerator Enemyturn()
     {
-        int target = rand.Next(0, pn);
+        target = rand.Next(0, pn);
         while (plset[target].getcurrentHP() <= 0)
         {
             target = rand.Next(0, pn);
@@ -258,7 +270,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         _decided = false;
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            roomHash["d"] = ATK_to_damage(enset.getATK());
+            damage = ATK_to_damage(enset.getATK());
+            roomHash["d"] = damage;
+            roomHash["t"] = target;
+            yield return new WaitForSeconds(1);
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
         }
         else

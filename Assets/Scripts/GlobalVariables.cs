@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 // グローバル変数を宣言するためのクラス
@@ -9,7 +10,7 @@ public class GlobalVariables : MonoBehaviour
     // 画面遷移の方向を保存する用の変数
     public static string dir = "start";
     // プレイヤー名
-    public static string _name = "Player1";
+    public static string _name = "Player2";
     // 取得単位数
     public static int credit = 0;
     // 残りライフ数
@@ -20,20 +21,21 @@ public class GlobalVariables : MonoBehaviour
     public static int ATK = 10;
     // プレイヤー人数
     public static int NOP = 2;
-
+    // 学年
+    public static int grade = 1;
 
 
 
     // 自分のid(マッチング時に決定するもの)
-    public static int mynum = 1;
+    public static int mynum = 2;
 
 
 
 
 
-    public static int building = -1;
-    public static List<int> enter_times = new List<int> { 0, 0, 0, 0, 0 };
-    public static int[,] id = new int[3,4] { { 0, 1, 2, 3 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 } };
+    public static int building = 0;
+    public static List<int> enter_times = new List<int> { 0, 0, 0, 0 };
+    public static int[,] id = new int[,] { { 4, 5, 8, 9 }, { 0, 1, 6, 11 }, { 2, 3, 7, 10 }, { 12, -1, -1, -1 } };
     public static string beforeScene;
 
     public static int battleresult = 0;

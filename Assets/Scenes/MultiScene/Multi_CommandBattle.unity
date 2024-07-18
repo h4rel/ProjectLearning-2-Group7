@@ -348,6 +348,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &30403827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30403828}
+  - component: {fileID: 30403829}
+  - component: {fileID: 30403830}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30403828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30403827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1009.78613, y: 461.7167, z: -5.924289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30403829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30403827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e77a14a29463f4b9e4b1c43a7444bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mb: {fileID: 1839949924}
+  roomNumber: 1
+--- !u!114 &30403830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30403827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833819414f1f9474bbda3996ff8d0145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &47217917
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +592,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 57643947}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
@@ -549,7 +608,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 57643947}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerExit
           m_Mode: 1
           m_Arguments:
@@ -565,7 +624,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 57643947}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
           m_Arguments:
@@ -682,7 +741,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 57643942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e90ff919ea7a73d45a65b1fc9dc3e92c, type: 3}
+  m_Script: {fileID: 11500000, guid: 85a8b6f73e566db4f8c86010ec1957cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   now: {fileID: 1289747216}
@@ -1279,7 +1338,7 @@ GameObject:
   - component: {fileID: 314765175}
   - component: {fileID: 314765179}
   - component: {fileID: 314765178}
-  - component: {fileID: 314765177}
+  - component: {fileID: 314765180}
   - component: {fileID: 314765176}
   m_Layer: 5
   m_Name: Item1
@@ -1324,8 +1383,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 314765177}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+        - m_Target: {fileID: 314765180}
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
@@ -1340,8 +1399,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 314765177}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+        - m_Target: {fileID: 314765180}
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerExit
           m_Mode: 1
           m_Arguments:
@@ -1356,8 +1415,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 314765177}
-          m_TargetAssemblyTypeName: DecideAction, Assembly-CSharp
+        - m_Target: {fileID: 314765180}
+          m_TargetAssemblyTypeName: MultiDecideAction, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
           m_Arguments:
@@ -1368,23 +1427,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &314765177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314765174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e90ff919ea7a73d45a65b1fc9dc3e92c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  now: {fileID: 784276438}
-  to_close: []
-  tmp: {fileID: 314765178}
-  s: "\u3084\u304F\u305D\u3046"
-  close_option: 0
 --- !u!114 &314765178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1524,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314765174}
   m_CullTransparentMesh: 1
+--- !u!114 &314765180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314765174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a8b6f73e566db4f8c86010ec1957cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  now: {fileID: 784276438}
+  to_close: []
+  tmp: {fileID: 314765178}
+  s: "\u3084\u304F\u305D\u3046"
+  close_option: 0
 --- !u!1 &318646328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,10 +1788,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5188,10 +5247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5807,10 +5866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -6163,3 +6222,4 @@ SceneRoots:
   - {fileID: 1839949921}
   - {fileID: 551182655}
   - {fileID: 47217919}
+  - {fileID: 30403828}
