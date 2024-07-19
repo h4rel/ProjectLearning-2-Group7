@@ -13,6 +13,8 @@ public class GlobalVariables : MonoBehaviour
     public static string _name = "Player1";
     // 取得単位数
     public static int credit = 0;
+    // 所持ポイント
+    public static int point = 0;
     // 残りライフ数
     public static int life = 4;
     // HP(最大)
@@ -30,6 +32,10 @@ public class GlobalVariables : MonoBehaviour
     public static int mynum = 1;
 
 
+
+
+    public static int[] weapon = new int[] { 0, 0, 0, 0 };
+    public static int hold = -1;
 
 
 
