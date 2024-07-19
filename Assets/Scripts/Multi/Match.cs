@@ -25,15 +25,15 @@ public class Match : MonoBehaviourPunCallbacks
         {
             Debug.LogWarning("Room name is not set.");
         }
-        // Debug.Log("Connected to Master");
-        // string roomName = $"MatchRoom{maxPlayers}"; // マッチ人数に基づいた部屋名を設定
-        // Debug.Log($"Attempting to join or create room: {roomName}");
-        // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = (byte)maxPlayers }, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom() {
         Debug.Log("Joined Room");
         Debug.Log($"Current player count: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+        // 自分の順番を設定する
+        GlobalVariables.mynum = PhotonNetwork.CurrentRoom.PlayerCount;
+        Debug.Log($"My player number: {GlobalVariables.mynum}");
 
         // 全プレイヤーが揃ったらシーン遷移を行う
         if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayers) {
@@ -46,6 +46,8 @@ public class Match : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer) {
         Debug.Log("Player entered room");
         Debug.Log($"Current player count: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+        // ここでは新しいプレイヤーに番号を設定しない (OnJoinedRoomで既に設定済み)
 
         // 新しいプレイヤーが入ったときも、全プレイヤーが揃ったらシーン遷移を行う
         if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayers) {
