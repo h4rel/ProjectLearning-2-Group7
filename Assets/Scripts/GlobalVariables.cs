@@ -13,6 +13,10 @@ public class GlobalVariables : MonoBehaviour
     public static string _name = "Player1";
     // 取得単位数
     public static int credit = 0;
+    // GPA
+    public static float GPA = 0;
+    // GPT
+    public static int GPT = 0;
     // 所持ポイント
     public static int point = 0;
     // 残りライフ数
@@ -34,14 +38,14 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-    public static int[] weapon = new int[] { 0, 0, 0, 0 };
+    public static int[] weapon = new int[] { 1, 1, 1, 1 };
     public static int hold = -1;
 
 
 
     public static int building = 0;
     public static List<int> enter_times = new List<int> { 0, 0, 0, 0 };
-    public static int[,] id = new int[,] { { 4, 5, 8, 9 }, { 0, 1, 6, 11 }, { 2, 3, 7, 10 }, { 12, -1, -1, -1 } };
+    public static int[,] id = new int[,] { { 4, 5, -1, 8, -1, 9, -1, -1 }, { 0, 1, -1, 6, -1, 11, -1, -1 }, { 2, 3, -1, 7, -1, 10, -1, -1 }, { -1, -1, -1, 12, -1, -1, -1, -1 } };
     public static string beforeScene;
 
     public static int battleresult = 0;
@@ -63,5 +67,6 @@ public class GlobalVariables : MonoBehaviour
             hours++;
             minutes -= 60;
         }
+        if (credit != 0) GPA = (float)GPT / credit;
     }
 }
