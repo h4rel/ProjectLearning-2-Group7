@@ -8,6 +8,13 @@ public class ExitBattle : MonoBehaviour
 {
     public void OnMouseDown()
     {
+        GlobalVariables.GPT += GlobalVariables.GP[GlobalVariables.battleresult] * EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].credit;
+        GlobalVariables.credit += EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].credit;
+        GlobalVariables.point += EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].point; //¬Ñ‚É‚æ‚éŒXÎ‚ğ‚Ü‚¾‚Â‚¯‚Ä‚¢‚È‚¢
+
+        GlobalVariables.GPA = GlobalVariables.GPT / GlobalVariables.credit;
+        GlobalVariables.enter_times[GlobalVariables.building]++;
+
         SceneManager.LoadScene(GlobalVariables.beforeScene);
     }
 }

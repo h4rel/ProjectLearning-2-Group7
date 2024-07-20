@@ -20,7 +20,7 @@ public class EnterBattle : MonoBehaviour
             GlobalVariables.beforeScene = nowscene;
 
             // ƒV[ƒ“‚ğØ‚èŠ·‚¦‚é
-            SceneManager.LoadScene("CommandBattle");
+            SceneManager.LoadScene("Multi_CommandBattle");
 
         }
     }

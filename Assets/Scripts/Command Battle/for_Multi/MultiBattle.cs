@@ -34,6 +34,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     [SerializeField] private string result;
     [SerializeField] private string retry;
 
+    [SerializeField] private GameObject th;
+
     public static bool _decided = false;
 
     public static string _action = "";
@@ -344,7 +346,6 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private void Win()
     {
         text.Show(enset.getname() + "をたおした！");
-        GlobalVariables.enter_times[GlobalVariables.building]++;
         Invoke("nextScene", 4f);
 
     }
@@ -358,8 +359,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private void nextScene()
     {
+        PhotonNetwork.LeaveRoom();
         if (end > 0) SceneManager.LoadScene(result);
         else SceneManager.LoadScene(retry);
+       // Destroy(th);
     }
 
 }
