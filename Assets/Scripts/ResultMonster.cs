@@ -13,6 +13,7 @@ public class ResultMonster : MonoBehaviour
     {
         // PanelにアタッチされているImageコンポーネントを取得
         resultImage = GetComponent<Image>();
+        SetResultImage(GlobalVariables.battleresult);
     }
 
     // 評価に応じて画像を設定するメソッド

@@ -13,18 +13,48 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
 
     private int triggerId = 0; // 初期化用の識別子
 
+    bool end = false;
     private void Start()
     {
         // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
+        Debug.Log("start");
+        end = false;
         PlayerData.Instance.RoomName = "aaa";     //遷移してこれるようになったら多分消す
         PhotonNetwork.ConnectUsingSettings();
+        Debug.Log("puppy");
+        if (!end) Continue();
+
         
+    }
+
+    public void Continue()
+    {
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            Debug.Log("connected to master");
+            if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+            {
+                // 外部入力から取得したルーム名でルームに参加または作成
+                string room = PlayerData.Instance.RoomName;
+                string roomName = $"{room}{roomNumber}";
+                Debug.Log("before create room");
+                PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+                Debug.Log("after create room");
+            }
+            else
+            {
+                Debug.Log("no");
+                Debug.LogWarning("Room name is not set.");
+            }
+            Debug.Log("out");
+        }
     }
 
     // マスターサーバーへの接続が成功した時に呼ばれるコールバック
     public override void OnConnectedToMaster()
     {
         Debug.Log("connected to master");
+        end = true;
         if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
         {
             // 外部入力から取得したルーム名でルームに参加または作成
@@ -33,7 +63,6 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
             Debug.Log("before create room");
             PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
             Debug.Log("after create room");
-            //mb.after_connected();
         }
         else
         {

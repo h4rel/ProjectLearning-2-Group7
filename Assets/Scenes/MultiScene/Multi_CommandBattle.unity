@@ -357,7 +357,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30403828}
-  - component: {fileID: 30403829}
   - component: {fileID: 30403830}
   m_Layer: 0
   m_Name: GameObject
@@ -381,20 +380,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &30403829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30403827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e77a14a29463f4b9e4b1c43a7444bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mb: {fileID: 1839949924}
-  roomNumber: 1
 --- !u!114 &30403830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5791,6 +5776,7 @@ GameObject:
   - component: {fileID: 1839949921}
   - component: {fileID: 1839949922}
   - component: {fileID: 1839949923}
+  - component: {fileID: 1839949925}
   - component: {fileID: 1839949924}
   m_Layer: 0
   m_Name: BattleController
@@ -5869,6 +5855,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839949920}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e77a14a29463f4b9e4b1c43a7444bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mb: {fileID: 1839949925}
+  roomNumber: 1
+--- !u!114 &1839949925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839949920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0342a4fb67bc8a439d5e38a50eaf06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -5892,6 +5892,7 @@ MonoBehaviour:
   p_entry: {fileID: 995052746}
   result: ResultScene
   retry: RetireScene
+  th: {fileID: 30403827}
 --- !u!1 &1858057659
 GameObject:
   m_ObjectHideFlags: 0
