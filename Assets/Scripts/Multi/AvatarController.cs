@@ -1,27 +1,28 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 public class AvatarController : MonoBehaviourPunCallbacks
 {
-    public string upAnime = "";     // 上向き：Inspectorで指定
-    public string downAnime = "";   // 下向き：Inspectorで指定
-    public string rightAnime = "";  // 右向き：Inspectorで指定
-    public string leftAnime = "";   // 左向き：Inspectorで指定
+    public string upAnime = "";
+    public string downAnime = "";
+    public string rightAnime = "";
+    public string leftAnime = "";
 
     private string nowMode = "";
     private string oldMode = "";
     private bool isMoving = false;
 
     private Animator animator;
-    public static int triggerId = -1; // 初期化用の識別子
-
+    public static int triggerId = -1;
 
     private void Start()
     {
         nowMode = downAnime;
         oldMode = "";
-        animator = GetComponent<Animator>(); // Animatorコンポーネントを取得
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -52,11 +53,11 @@ public class AvatarController : MonoBehaviourPunCallbacks
 
             if (!isMoving)
             {
-                animator.speed = 0; // アニメーションを停止
+                animator.speed = 0;
             }
             else
             {
-                animator.speed = 1; // アニメーションを再開
+                animator.speed = 1;
             }
         }
     }
@@ -80,60 +81,77 @@ public class AvatarController : MonoBehaviourPunCallbacks
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-{
-    SceneChangeTrigger trigger = collision.gameObject.GetComponent<SceneChangeTrigger>();
-    if (trigger != null)
     {
-        Debug.Log($"Trigger detected with ID: {trigger.triggerId}"); // トリガーIDをログに出力
-
-        triggerId = trigger.triggerId;
-
-        PhotonNetwork.LeaveRoom();
-
-        switch (triggerId)
+        SceneChangeTrigger trigger = collision.gameObject.GetComponent<SceneChangeTrigger>();
+        if (trigger != null)
         {
-            case 1:
-                SceneManager.LoadScene("Field01SceneMulti");
-                break;
-            case 2:
-                SceneManager.LoadScene("StartFieldSceneMulti");
-                break;
-            case 3:
-                SceneManager.LoadScene("Field02SceneMulti");
-                break;
-            case 4:
-                SceneManager.LoadScene("Field01SceneMulti");
-                break;
-            case 5:
-                SceneManager.LoadScene("Field03SceneMulti");
-                break;
-            case 6:
-                SceneManager.LoadScene("Field02SceneMulti");
-                break;
-            case 7:
-                SceneManager.LoadScene("Field04SceneMulti");
-                break;
-            case 8:
-                SceneManager.LoadScene("Field03SceneMulti");
-                break;
-            case 9:
-                SceneManager.LoadScene("Field05SceneMulti");
-                break;
-            case 10:
-                SceneManager.LoadScene("Field04SceneMulti");
-                break;
-            case 11:
-                SceneManager.LoadScene("Field06SceneMulti");
-                break;
-            case 12:
-                SceneManager.LoadScene("Field05SceneMulti");
-                break;
-            default:
-                Debug.LogWarning("Unknown triggerId: " + triggerId);
-                break;
+            Debug.Log($"Trigger detected with ID: {trigger.triggerId}");
+
+            triggerId = trigger.triggerId;
+
+            if (triggerId == 13)
+            {
+                TriggerMoveToStartFieldScene("StartFieldSceneMulti");
+            }
+            else
+            {
+                PhotonNetwork.LeaveRoom();
+                switch (triggerId)
+                {
+                    case 1:
+                        SceneManager.LoadScene("Field01SceneMulti");
+                        break;
+                    case 2:
+                        SceneManager.LoadScene("StartFieldSceneMulti");
+                        break;
+                    case 3:
+                        SceneManager.LoadScene("Field02SceneMulti");
+                        break;
+                    case 4:
+                        SceneManager.LoadScene("Field01SceneMulti");
+                        break;
+                    case 5:
+                        SceneManager.LoadScene("Field03SceneMulti");
+                        break;
+                    case 6:
+                        SceneManager.LoadScene("Field02SceneMulti");
+                        break;
+                    case 7:
+                        SceneManager.LoadScene("Field04SceneMulti");
+                        break;
+                    case 8:
+                        SceneManager.LoadScene("Field03SceneMulti");
+                        break;
+                    case 9:
+                        SceneManager.LoadScene("Field05SceneMulti");
+                        break;
+                    case 10:
+                        SceneManager.LoadScene("Field04SceneMulti");
+                        break;
+                    case 11:
+                        SceneManager.LoadScene("Field06SceneMulti");
+                        break;
+                    case 12:
+                        SceneManager.LoadScene("Field05SceneMulti");
+                        break;
+                    default:
+                        Debug.LogWarning("Unknown triggerId: " + triggerId);
+                        break;
+                }
+            }
         }
     }
+    public void TriggerMoveToStartFieldScene(string sceneName)
+    {
+        photonView.RPC("MoveToStartFieldScene", RpcTarget.All, sceneName);
+    }
+
+    [PunRPC]
+private void MoveToStartFieldScene(string sceneName)
+{
+    // ルームから退出
+    PhotonNetwork.LeaveRoom();
+    // シーンを読み込む
+    PhotonNetwork.LoadLevel(sceneName);
 }
-
-
 }

@@ -34,6 +34,7 @@ public class GlobalVariables : MonoBehaviour
 
     // 自分のid(マッチング時に決定するもの)
     public static int mynum = 1;
+    public static int hasTransitioned = 0; // フラグを追加
 
 
 

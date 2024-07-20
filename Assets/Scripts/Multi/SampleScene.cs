@@ -1,25 +1,26 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using System.Collections;
 
-// MonoBehaviourPunCallbacksを継承して、PUNのコールバックを受け取れるようにする
 public class SampleScene : MonoBehaviourPunCallbacks
 {
-    // Inspectorで設定するためのpublicフィールドを追加
-    public int roomNumber = 1; // デフォルトのルーム番号を1に設定
+    public int roomNumber = 1;
 
-    private int triggerId = 0; // 初期化用の識別子
+    private int triggerId = 0;
 
     private void Start() {
-        // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
+    if (PhotonNetwork.NetworkClientState == ClientState.Disconnected) {
         PhotonNetwork.ConnectUsingSettings();
+    } else {
+        Debug.LogWarning("ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: " + PhotonNetwork.NetworkClientState);
     }
+}
 
-    // マスターサーバーへの接続が成功した時に呼ばれるコールバック
+
     public override void OnConnectedToMaster() {
         if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
         {
-            // 外部入力から取得したルーム名でルームに参加または作成
             string room = PlayerData.Instance.RoomName;
             string roomName = $"{room}{roomNumber}";
             PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
@@ -28,35 +29,67 @@ public class SampleScene : MonoBehaviourPunCallbacks
         {
             Debug.LogWarning("Room name is not set.");
         }
-        // // Inspectorで設定したルーム番号を使ってルーム名を設定する
-        // string roomName = $"Room{roomNumber}";
-        // // ルーム名を使ってルームに参加する（ルームが存在しなければ作成して参加する）
-        // PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
     }
 
-    // ゲームサーバーへの接続が成功した時に呼ばれるコールバック
-    public override void OnJoinedRoom() {
-        // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
+    public override void OnJoinedRoom()
+    {
         Vector3 position = GetSpawnPosition();
         PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+
+        // 遅延処理を開始
+        if (triggerId == 13)
+        {
+            AvatarController avatarController = FindObjectOfType<AvatarController>();
+            if (avatarController != null)
+            {
+                StartCoroutine(HandleSceneTransition(avatarController));
+            }
+        }
     }
+
+    private IEnumerator HandleSceneTransition(AvatarController avatarController)
+    {
+        // ここで遅延を追加します。たとえば、1秒の遅延。
+        yield return new WaitForSeconds(1f);
+
+        switch (GlobalVariables.hasTransitioned)
+        {
+            case 0:
+                GlobalVariables.hasTransitioned = 1; // シーン遷移が実行されたことを記録
+                avatarController.TriggerMoveToStartFieldScene("Field01SceneMulti");
+                break;
+            case 1:
+                GlobalVariables.hasTransitioned = 2; // シーン遷移が実行されたことを記録
+                avatarController.TriggerMoveToStartFieldScene("Field02SceneMulti");
+                break;
+            case 2:
+                GlobalVariables.hasTransitioned = 0; // 次回の遷移を記録
+                AvatarController.triggerId = 0;
+                avatarController.TriggerMoveToStartFieldScene("Field03SceneMulti");
+                break;
+            default:
+                // 追加のケースが必要な場合はここに記述
+                break;
+        }
+    }
+
 
     private Vector3 GetSpawnPosition()
     {
         triggerId = AvatarController.triggerId;
-        Debug.Log($"Trigger detected with ID: {AvatarController.triggerId}"); // トリガーIDをログに出力
+        Debug.Log($"Trigger detected with ID: {AvatarController.triggerId}");
         if (triggerId == 0)
-    {
-        return new Vector3(-3.01f, -0.6f); // 0の時デフォルトの生成位置
-    }
-    else if (triggerId % 2 == 1)
-    {
-        return new Vector3(-7.5f, 0f); // 奇数の自然数の時
-    }
-    else if (triggerId % 2 == 0)
-    {
-        return new Vector3(7.5f, 0f); // 偶数の自然数の時
-    }
-    return new Vector3(-3.01f, -0.6f); // デフォルトの生成位置
+        {
+            return new Vector3(-3.01f, -0.6f);
+        }
+        else if (triggerId % 2 == 1)
+        {
+            return new Vector3(-7.5f, 0f);
+        }
+        else if (triggerId % 2 == 0)
+        {
+            return new Vector3(7.5f, 0f);
+        }
+        return new Vector3(-3.01f, -0.6f);
     }
 }
