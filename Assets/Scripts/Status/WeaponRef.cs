@@ -1,11 +1,11 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class WeaponRef : MonoBehaviour
 {
-    private static string[] weapon = new string[] { "ÇªÇ§Ç—Ç»Çµ", "Logical   ATK +5", "Accuracy   ATK +10", "Knowledgeble   ATK +15", "Punctual   ATK +20" };
+    private static string[] weapon = new string[] { "„Åù„ÅÜ„Å≥„Å™„Åó", "Logical   ATK +5", "Accuracy   ATK +7", "Knowledgeble   ATK +9", "Punctual   ATK +13" };
     [SerializeField] private TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()

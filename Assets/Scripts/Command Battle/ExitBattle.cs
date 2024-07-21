@@ -15,6 +15,28 @@ public class ExitBattle : MonoBehaviour
         GlobalVariables.GPA = GlobalVariables.GPT / GlobalVariables.credit;
         GlobalVariables.enter_times[GlobalVariables.building]++;
 
+        for(int i = 0; i < 4; i++)
+        {
+            if (GlobalVariables.id[i,GlobalVariables.enter_times[i]] >= 0)
+            {
+                break;
+            }
+
+            if (i == 3)
+            {
+                // Šw”N‚ªã‚ª‚Á‚½‚Æ‚«‚Ìˆ—
+                for (int j = 0; j < 4; j++)
+                {
+                    GlobalVariables.enter_times[i]++;
+                }
+                GlobalVariables.maxHP += 20;
+                GlobalVariables.ATK += 10;
+                GlobalVariables.grade++;
+
+            }
+        }
+
+
         SceneManager.LoadScene(GlobalVariables.beforeScene);
     }
 }

@@ -22,7 +22,7 @@ public class GlobalVariables : MonoBehaviour
     // 残りライフ数
     public static int life = 4;
     // HP(最大)
-    public static int maxHP = 100;
+    public static int maxHP = 40;
     // 攻撃力
     public static int ATK = 20;
     // プレイヤー人数

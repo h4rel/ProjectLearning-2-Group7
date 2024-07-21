@@ -354,6 +354,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private void Lose()
     {
         text.Show("単位を取ることが出来なかった");
+        GlobalVariables.life--;
         Invoke("nextScene", 4f);
     }
 
