@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;	// ƒV[ƒ“Ø‚è‘Ö‚¦‚É•K—v
+using UnityEngine.SceneManagement;	// ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã«å¿…è¦
 
-// ƒ^ƒbƒ`‚·‚é‚ÆAƒV[ƒ“‚ğØ‚èŠ·‚¦‚é
+// ã‚¿ãƒƒãƒã™ã‚‹ã¨ã€ã‚·ãƒ¼ãƒ³ã‚’åˆ‡ã‚Šæ›ãˆã‚‹
 public class ExitBattle : MonoBehaviour
 {
     public void OnMouseDown()
     {
         GlobalVariables.GPT += GlobalVariables.GP[GlobalVariables.battleresult] * EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].credit;
         GlobalVariables.credit += EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].credit;
-        GlobalVariables.point += EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].point; //¬Ñ‚É‚æ‚éŒXÎ‚ğ‚Ü‚¾‚Â‚¯‚Ä‚¢‚È‚¢
+        GlobalVariables.point += EnemySettings.eset[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]].point; //æˆç¸¾ã«ã‚ˆã‚‹å‚¾æ–œã‚’ã¾ã ã¤ã‘ã¦ã„ãªã„
 
         GlobalVariables.GPA = GlobalVariables.GPT / GlobalVariables.credit;
         GlobalVariables.enter_times[GlobalVariables.building]++;
@@ -24,10 +24,10 @@ public class ExitBattle : MonoBehaviour
 
             if (i == 3)
             {
-                // Šw”N‚ªã‚ª‚Á‚½‚Æ‚«‚Ìˆ—
+                // å­¦å¹´ãŒä¸ŠãŒã£ãŸã¨ãã®å‡¦ç†
                 for (int j = 0; j < 4; j++)
                 {
-                    GlobalVariables.enter_times[i]++;
+                    GlobalVariables.enter_times[j]++;
                 }
                 GlobalVariables.maxHP += 20;
                 GlobalVariables.ATK += 10;
@@ -36,7 +36,13 @@ public class ExitBattle : MonoBehaviour
             }
         }
 
-
-        SceneManager.LoadScene(GlobalVariables.beforeScene);
+        if (GlobalVariables.grade <= 4)
+        {
+            SceneManager.LoadScene(GlobalVariables.beforeScene);
+        }
+        else
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
     }
 }

@@ -27,7 +27,7 @@ public class BattleText : MonoBehaviour
     private float _remainTime;
     private int _currentMaxVisibleCharacters;
 
-    public void Start()
+    public void Awake()
     {
         _isRunning = false;
     }

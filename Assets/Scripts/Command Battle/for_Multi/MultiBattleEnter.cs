@@ -82,7 +82,7 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
         myHash["n"] = GlobalVariables._name;
         myHash["h"] = GlobalVariables.maxHP;
         myHash["pn"] = GlobalVariables.mynum;
-        myHash["a"] = GlobalVariables.ATK;
+        myHash["a"] = GlobalVariables.ATK + GlobalVariables.weaponATK[GlobalVariables.hold+1];
         PhotonNetwork.LocalPlayer.SetCustomProperties(myHash);
         Debug.Log("joinedroom");
 

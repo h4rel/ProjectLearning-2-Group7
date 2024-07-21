@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,13 +14,20 @@ public class EnterBattle : MonoBehaviour
     {
         if (collision.gameObject.name == targetObjectName)
         {
-            // ‰æ–Ê‘JˆÚ‚Ì•ûŒü‚Ì•Û‘¶
+            // ç”»é¢é·ç§»ã®æ–¹å‘ã®ä¿å­˜
             GlobalVariables.dir = "enter";
             GlobalVariables.building = building_num;
             GlobalVariables.beforeScene = nowscene;
 
-            // ƒV[ƒ“‚ðØ‚èŠ·‚¦‚é
-            SceneManager.LoadScene("Multi_CommandBattle");
+            // ã‚·ãƒ¼ãƒ³ã‚’åˆ‡ã‚Šæ›ãˆã‚‹
+            if (GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]] >= 0)
+            {
+                SceneManager.LoadScene("Multi_CommandBattle");
+            }
+            else
+            {
+                SceneManager.LoadScene("NoOneHereScene");
+            }
 
         }
     }

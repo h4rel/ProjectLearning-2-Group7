@@ -158,7 +158,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         }
         for (int i = 0; i < pn + 1; i++)
         {
-            order[i] = i;
+            order[i] = (i+1)%(pn+1);
         }
         StartCoroutine(first());
     }
@@ -178,7 +178,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     {
         while (end == 0)
         {
-            OrderDecider();
+            // OrderDecider();
             foreach (int x in order)
             {
                 if (x == 0)
@@ -362,8 +362,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
         if (end > 0) SceneManager.LoadScene(result);
-        else SceneManager.LoadScene(retry);
-       // Destroy(th);
+        else SceneManager.LoadScene(GlobalVariables.beforeScene);
     }
 
 }
