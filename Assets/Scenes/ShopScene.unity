@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 124370307}
   - component: {fileID: 124370306}
   m_Layer: 5
-  m_Name: LogicalBack
+  m_Name: PunctualBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 602121411}
   - component: {fileID: 602121410}
   m_Layer: 5
-  m_Name: LogicalFrame (3)
+  m_Name: PunctualFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -854,12 +854,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   now: {fileID: 602121412}
   w_num: 0
+  Ref: {fileID: 0}
   other:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   SelectMat: {fileID: 2100000, guid: 9a9699708a3f50b40ba668d6dc1e4d4e, type: 2}
   watchingMat: {fileID: 2100000, guid: a965a468c566929458df04658d9cc76f, type: 2}
+  defaultmat: {fileID: 0}
 --- !u!114 &602121412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,7 +912,7 @@ GameObject:
   - component: {fileID: 652801546}
   - component: {fileID: 652801545}
   m_Layer: 5
-  m_Name: Logical
+  m_Name: Knowledgeble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,7 +987,7 @@ GameObject:
   - component: {fileID: 693548203}
   - component: {fileID: 693548202}
   m_Layer: 5
-  m_Name: LogicalBack
+  m_Name: AccuracyBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1514,7 +1516,7 @@ GameObject:
   - component: {fileID: 1021012847}
   - component: {fileID: 1021012846}
   m_Layer: 5
-  m_Name: LogicalBack
+  m_Name: KnowledgebleBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,7 +1592,7 @@ GameObject:
   - component: {fileID: 1223633791}
   - component: {fileID: 1223633790}
   m_Layer: 5
-  m_Name: Logical
+  m_Name: Accuracy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1843,12 +1845,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   now: {fileID: 1286881071}
   w_num: 0
+  Ref: {fileID: 0}
   other:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   SelectMat: {fileID: 2100000, guid: 9a9699708a3f50b40ba668d6dc1e4d4e, type: 2}
   watchingMat: {fileID: 2100000, guid: a965a468c566929458df04658d9cc76f, type: 2}
+  defaultmat: {fileID: 0}
 --- !u!114 &1286881071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,7 +1905,7 @@ GameObject:
   - component: {fileID: 1311845096}
   - component: {fileID: 1311845095}
   m_Layer: 5
-  m_Name: LogicalFrame (1)
+  m_Name: AccuracyFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2002,12 +2006,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   now: {fileID: 1311845097}
   w_num: 0
+  Ref: {fileID: 0}
   other:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   SelectMat: {fileID: 2100000, guid: 9a9699708a3f50b40ba668d6dc1e4d4e, type: 2}
   watchingMat: {fileID: 2100000, guid: a965a468c566929458df04658d9cc76f, type: 2}
+  defaultmat: {fileID: 0}
 --- !u!114 &1311845097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,7 +2960,7 @@ GameObject:
   - component: {fileID: 1982697625}
   - component: {fileID: 1982697624}
   m_Layer: 5
-  m_Name: Logical
+  m_Name: Punctual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3031,7 +3037,7 @@ GameObject:
   - component: {fileID: 1989432525}
   - component: {fileID: 1989432524}
   m_Layer: 5
-  m_Name: LogicalFrame (2)
+  m_Name: KnowledgebleFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3132,12 +3138,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   now: {fileID: 1989432526}
   w_num: 0
+  Ref: {fileID: 0}
   other:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   SelectMat: {fileID: 2100000, guid: 9a9699708a3f50b40ba668d6dc1e4d4e, type: 2}
   watchingMat: {fileID: 2100000, guid: a965a468c566929458df04658d9cc76f, type: 2}
+  defaultmat: {fileID: 0}
 --- !u!114 &1989432526
 MonoBehaviour:
   m_ObjectHideFlags: 0

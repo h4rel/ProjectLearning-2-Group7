@@ -18,7 +18,7 @@ public class GlobalVariables : MonoBehaviour
     // GPT
     public static float GPT = 0;
     // 所持ポイント
-    public static int point = 0;
+    public static int point = 3;
     // 残りライフ数
     public static int life = 4;
     // HP(最大)
@@ -39,9 +39,12 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-    public static int[] weapon = new int[] { 1, 1, 1, 1 };
-    public static int[] weaponATK = new int[] { 0, 5, 10, 15, 20 };
+    public static int[] weapon = new int[] { 0, 0, 1, 1 };
+    public static int[] weaponATK = new int[] { 0, 5, 7, 9, 13 };
+    public static int[] weaponPrice = new int[] { 2, 4, 6, 8 };
     public static int hold = -1;
+
+    public static int shopselect = -1;
 
 
 
