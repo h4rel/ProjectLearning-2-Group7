@@ -18,13 +18,26 @@ public class ChangeEquipment : MonoBehaviour
     [SerializeField] private Material watchingMat;
     [SerializeField] private Material defaultmat;
 
+    [SerializeField] private Image inside;
+    [SerializeField] private Material Monomat;
+
     private void Awake()
     {
         if (GlobalVariables.hold == w_num)
         {
             now.material = SelectMat;
         }
+        if (GlobalVariables.weapon[w_num] == 0)
+        {
+            inside.material = Monomat;
+        }
+        else
+        {
+            inside.material = defaultmat;
+        }
     }
+
+
 
 
     public void OnPointerEnter()
@@ -45,22 +58,25 @@ public class ChangeEquipment : MonoBehaviour
 
     public void OnPointerClick()
     {
-        foreach (Image obj in other)
+        if (GlobalVariables.weapon[w_num] > 0)
         {
-            obj.material = defaultmat;
+            foreach (Image obj in other)
+            {
+                obj.material = defaultmat;
+            }
+
+            if (GlobalVariables.hold != w_num)
+            {
+                GlobalVariables.hold = w_num;
+                now.material = SelectMat;
+            }
+            else
+            {
+                GlobalVariables.hold = -1;
+                now.material = defaultmat;
+            }
+            Ref.change();
         }
-        
-        if (GlobalVariables.hold != w_num)
-        {
-            GlobalVariables.hold = w_num;
-            now.material = SelectMat;
-        }
-        else
-        {
-            GlobalVariables.hold = -1;
-            now.material = defaultmat;
-        }
-        Ref.change();
     }
 
 }
