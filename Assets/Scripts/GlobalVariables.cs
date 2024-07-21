@@ -66,11 +66,37 @@ public class GlobalVariables : MonoBehaviour
     public static int minutes = 0;
     public static int seconds = 0;
     public static int hours = 0;
-    private int _time;
+    private static int _time;
+
+    private static int starttime;
+
+    public static void init()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            weapon[i] = 0;
+            enter_times[i] = 0;
+        }
+        dir = "start";
+        credit = 0;
+        GPA = 0;
+        GPT = 0;
+        point = 0;
+        life = 4;
+        maxHP = 40;
+        ATK = 20;
+        grade = 1;
+        hold = -1;
+        shopselect = -1;
+        minutes = 0;
+        seconds = 0;
+        hours = 0;
+        starttime = (int)Time.time;
+    }
 
     public void Update()
     {
-        _time = (int)Time.time;
+        _time = (int)Time.time - starttime;
         minutes = _time / 60;
         seconds = _time % 60;
         if (minutes >= 60)

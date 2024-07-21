@@ -19,6 +19,8 @@ public class EnterBattle : MonoBehaviour
             GlobalVariables.building = building_num;
             GlobalVariables.beforeScene = nowscene;
 
+            if (building_num == 2) GlobalVariables.dir = "down";
+
             // シーンを切り換える
             if (GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]] >= 0)
             {

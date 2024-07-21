@@ -26,6 +26,8 @@ public class OnMouseDown_Login : MonoBehaviour
         // ユーザネームが空でない場合のみ処理を続ける
         if (!string.IsNullOrEmpty(usernameInput.text))
         {
+            GlobalVariables._name = usernameInput.text;
+
             // クリック音を再生
             PlayClickSound();
 

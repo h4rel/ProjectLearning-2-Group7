@@ -1220,6 +1220,7 @@ GameObject:
   - component: {fileID: 848163024}
   - component: {fileID: 848163023}
   - component: {fileID: 848163022}
+  - component: {fileID: 848163026}
   - component: {fileID: 848163025}
   m_Layer: 5
   m_Name: Button4
@@ -1355,6 +1356,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: SquadMatchSceneMulti
+--- !u!114 &848163026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848163020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800258bf5cab7bf409fcf81b0eeb1ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nop: 4
 --- !u!1 &995568728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,6 +1460,7 @@ GameObject:
   - component: {fileID: 1005063751}
   - component: {fileID: 1005063750}
   - component: {fileID: 1005063749}
+  - component: {fileID: 1005063753}
   - component: {fileID: 1005063752}
   m_Layer: 5
   m_Name: Button2
@@ -1581,6 +1596,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: DuoMatchSceneMulti
+--- !u!114 &1005063753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005063747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800258bf5cab7bf409fcf81b0eeb1ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nop: 2
 --- !u!1 &1323748705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,6 +2395,7 @@ GameObject:
   - component: {fileID: 1678335233}
   - component: {fileID: 1678335232}
   - component: {fileID: 1678335231}
+  - component: {fileID: 1678335235}
   - component: {fileID: 1678335234}
   m_Layer: 5
   m_Name: Button3
@@ -2502,6 +2531,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TrioMatchSceneMulti
+--- !u!114 &1678335235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678335229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800258bf5cab7bf409fcf81b0eeb1ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nop: 3
 --- !u!1 &1723767240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,6 +2796,7 @@ GameObject:
   - component: {fileID: 1885025396}
   - component: {fileID: 1885025395}
   - component: {fileID: 1885025394}
+  - component: {fileID: 1885025398}
   - component: {fileID: 1885025397}
   m_Layer: 5
   m_Name: Button1
@@ -2889,6 +2932,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: StartFieldScene
+--- !u!114 &1885025398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885025392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800258bf5cab7bf409fcf81b0eeb1ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nop: 1
 --- !u!1 &2048786994
 GameObject:
   m_ObjectHideFlags: 0
