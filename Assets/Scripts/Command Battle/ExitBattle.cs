@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;	// シーン切り替えに必要
+using Photon.Realtime;
+using Photon.Pun;
 
 // タッチすると、シーンを切り換える
-public class ExitBattle : MonoBehaviour
+public class ExitBattle : MonoBehaviourPunCallbacks
 {
     public void OnMouseDown()
     {
@@ -38,7 +40,15 @@ public class ExitBattle : MonoBehaviour
 
         if (GlobalVariables.grade <= 4)
         {
-            SceneManager.LoadScene(GlobalVariables.beforeScene);
+            if (GlobalVariables.NOP == 1)
+            {
+                SceneManager.LoadScene(GlobalVariables.beforeScene);
+            }
+            else
+            {
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.LoadLevel(GlobalVariables.beforeScene);
+            }
         }
         else
         {
