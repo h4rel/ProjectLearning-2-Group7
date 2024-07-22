@@ -97,10 +97,10 @@ public class AvatarController : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    GlobalVariables.building = ((trg - 100) / 10) - 3;
+                    GlobalVariables.building = ((triggerId - 100) / 10) - 3;
                     string ss;
-                    if (trg < 140) ss = "3";
-                    else if (trg < 160) ss = "4";
+                    if (triggerId < 140) ss = "3";
+                    else if (triggerId < 160) ss = "4";
                     else ss = "6";
                     GlobalVariables.beforeScene = "Field0" + ss + "SceneMulti";
                     PhotonNetwork.LeaveRoom();
@@ -154,6 +154,9 @@ public class AvatarController : MonoBehaviourPunCallbacks
                         break;
                     case 14:
                         SceneManager.LoadScene("Field06SceneMulti");
+                        break;
+                    case 1000:
+                        SceneManager.LoadScene("ShopScene");
                         break;
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
