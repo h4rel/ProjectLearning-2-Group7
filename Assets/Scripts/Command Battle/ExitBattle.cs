@@ -35,6 +35,11 @@ public class ExitBattle : MonoBehaviourPunCallbacks
                 GlobalVariables.ATK += 10;
                 GlobalVariables.grade++;
 
+                if (GlobalVariables.grade <= 4)
+                {
+                    SceneManager.LoadScene("LevelUp");
+                    return;
+                }
             }
         }
 
@@ -43,16 +48,18 @@ public class ExitBattle : MonoBehaviourPunCallbacks
             if (GlobalVariables.NOP == 1)
             {
                 SceneManager.LoadScene(GlobalVariables.beforeScene);
+                return;
             }
             else
             {
-                PhotonNetwork.LeaveRoom();
                 PhotonNetwork.LoadLevel(GlobalVariables.beforeScene);
+                return;
             }
         }
         else
         {
             SceneManager.LoadScene("EndingScene");
+            return;
         }
     }
 }

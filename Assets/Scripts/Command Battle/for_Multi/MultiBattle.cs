@@ -13,6 +13,7 @@ using Photon.Realtime;
 using System.Linq.Expressions;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class MultiBattle : MonoBehaviourPunCallbacks
 {
@@ -30,11 +31,15 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject p_item;
     [SerializeField] private GameObject p_waiting;
     [SerializeField] private GameObject p_entry;
+    [SerializeField] private GameObject p_oneentry;
+    [SerializeField] private GameObject p_enemy;
 
     [SerializeField] private string result;
     [SerializeField] private string retry;
 
     [SerializeField] private GameObject th;
+
+    [SerializeField] private Sprite[] monsters;
 
     public static bool _decided = false;
 
@@ -61,6 +66,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private int[] order;
 
     private EnemySettings enset;
+
+    private Image enimg;
 
     private System.Random rand;
 
@@ -104,10 +111,20 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        if (GlobalVariables.NOP == 1)
+        {
+            p_oneentry.SetActive(true);
+            p_entry.SetActive(false);
+        }
+        else
+        {
+            p_entry.SetActive(true);
+            p_oneentry.SetActive(false);
+        }
         p_command.SetActive(false);
         p_item.SetActive(false);
         p_waiting.SetActive(false);
-        p_entry.SetActive(true);
+        p_enemy.SetActive(false);
         pl_panel[0].SetActive(false);
         pl_panel[1].SetActive(false);
         pl_panel[2].SetActive(false);
@@ -132,7 +149,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         pn = GlobalVariables.NOP;
         alive = pn;
 
-        
+
 
         plset = new List<PlayerSettings>();
         for (int i = 0; i < pn; i++)
@@ -155,15 +172,24 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         }
 
         p_entry.SetActive(false);
+        p_oneentry.SetActive(false);
+
         for (int i = 0; i < pn; i++)
         {
             pl_panel[i].SetActive(true);
         }
 
+        p_enemy.SetActive(true);
+
+        enimg = enemy.GetComponent<Image>();
+        if (enimg != null)
+        {
+            enimg.sprite = monsters[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]%10];
+        }
 
         enset = enemy.GetComponent<EnemySettings>();
-        enset.setHP((int)(enset.getmaxHP() * multihp[pn-1]));
-        enset.setATK((int)(enset.getATK() * multiatk[pn-1]));
+        enset.setHP((int)(enset.getmaxHP() * multihp[pn - 1]));
+        enset.setATK((int)(enset.getATK() * multiatk[pn - 1]));
         enset.TakeDamage(0);
         rand = new System.Random((int)Time.time); //Time
         order = new int[pn + 1];
@@ -175,7 +201,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         }
         for (int i = 0; i < pn + 1; i++)
         {
-            order[i] = (i+1)%(pn+1);
+            order[i] = (i + 1) % (pn + 1);
         }
         StartCoroutine(first());
     }
@@ -303,7 +329,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
                 _decided = false;
                 if (PhotonNetwork.LocalPlayer.IsMasterClient)
                 {
-                    damage = ATK_to_damage(plset[n-1].getATK());
+                    damage = ATK_to_damage(plset[n - 1].getATK());
                     roomHash["d"] = damage;
                     yield return new WaitForSeconds(1);
                     PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
@@ -439,9 +465,20 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LoadLevel(result);
             }
-            
+
         }
-        else SceneManager.LoadScene(GlobalVariables.beforeScene);
+        else
+        {
+            if (GlobalVariables.NOP == 1 && GlobalVariables.life > 0)
+            {
+                SceneManager.LoadScene("RetryScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("FailureScene");
+            }
+
+        }
     }
 
 }
