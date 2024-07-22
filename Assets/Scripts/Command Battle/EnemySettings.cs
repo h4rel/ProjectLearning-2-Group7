@@ -75,6 +75,16 @@ public class EnemySettings : MonoBehaviour
         return _name;
     }
 
+    public void setHP(int hp)
+    {
+        maxHP = hp;
+        currentHP = hp;
+    }
+
+    public void setATK(int atk)
+    {
+        ATK = atk;
+    }
 
 
 
@@ -124,13 +134,13 @@ public class EnemySettings : MonoBehaviour
         eset[6].point = 3;
         eset[6].credit = 2;
 
-        eset[7].e_name = "プログラミング演習Ⅰ";
+        eset[7].e_name = "プログラミング演習I";
         eset[7].hp = 80;
         eset[7].atk = 25;
         eset[7].point = 3;
         eset[7].credit = 2;
 
-        eset[8].e_name = "プログラミング演習Ⅱ";
+        eset[8].e_name = "プログラミング演習II";
         eset[8].hp = 120;
         eset[8].atk = 30;
         eset[8].point = 3;

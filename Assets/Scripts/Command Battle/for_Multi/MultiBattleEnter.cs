@@ -11,7 +11,7 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
     // Inspectorで設定するためのpublicフィールドを追加
     public int roomNumber = 1; // デフォルトのルーム番号を1に設定
 
-    private int triggerId = 0; // 初期化用の識別子
+   // private int triggerId = 0; // 初期化用の識別子
 
     bool end = false;
     private void Start()
