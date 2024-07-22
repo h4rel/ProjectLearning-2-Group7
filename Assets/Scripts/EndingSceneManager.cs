@@ -19,29 +19,29 @@ public class EndingSceneManager : MonoBehaviour
         string command = "";
         string data = "";
 
-        if (GlobalVariables.numOfPlayer == 1)
+        if (GlobalVariables.NOP == 1)
         {
             command = "INSERT_RANKING1";
-            data = GlobalVariables.playername + "," + GlobalVariables.gpa + "," + GlobalVariables.score;
+            data = GlobalVariables._name + "," + GlobalVariables.GPA + "," + GlobalVariables.score;
         }
-        else if (GlobalVariables.numOfPlayer == 2)
+        else if (GlobalVariables.NOP == 2)
         {
             command = "INSERT_RANKING2";
-            data = GlobalVariables.teamname + "," + GlobalVariables.gpa + "," + GlobalVariables.score;
+            data = GlobalVariables.teamname + "," + GlobalVariables.GPA + "," + GlobalVariables.score;
         }
-        else if (GlobalVariables.numOfPlayer == 3)
+        else if (GlobalVariables.NOP == 3)
         {
             command = "INSERT_RANKING3";
-            data = GlobalVariables.teamname + "," + GlobalVariables.gpa + "," + GlobalVariables.score;
+            data = GlobalVariables.teamname + "," + GlobalVariables.GPA + "," + GlobalVariables.score;
         }
-        else if (GlobalVariables.numOfPlayer == 4)
+        else if (GlobalVariables.NOP == 4)
         {
             command = "INSERT_RANKING4";
-            data = GlobalVariables.teamname + "," + GlobalVariables.gpa + "," + GlobalVariables.score;
+            data = GlobalVariables.teamname + "," + GlobalVariables.GPA + "," + GlobalVariables.score;
         }
         else
         {
-            Debug.LogError("Invalid number of players: " + GlobalVariables.numOfPlayer);
+            Debug.LogError("Invalid number of players: " + GlobalVariables.NOP);
             yield break;
         }
 

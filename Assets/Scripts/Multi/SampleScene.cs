@@ -9,18 +9,42 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
     private int triggerId = 0;
 
+    bool end = false;
+
     private void Start() {
+        end = false;
     if (PhotonNetwork.NetworkClientState == ClientState.Disconnected) {
         PhotonNetwork.ConnectUsingSettings();
     } else {
         Debug.LogWarning("ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: " + PhotonNetwork.NetworkClientState);
     }
+    if (!end)
+        {
+            Continue();
+        }
+
 }
+
+    public void Continue()
+    {
+        if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+        {
+            end = true;
+            string room = PlayerData.Instance.RoomName;
+            string roomName = $"{room}{roomNumber}";
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+        }
+        else
+        {
+            Debug.LogWarning("Room name is not set.");
+        }
+    }
 
 
     public override void OnConnectedToMaster() {
         if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
         {
+            end = true;
             string room = PlayerData.Instance.RoomName;
             string roomName = $"{room}{roomNumber}";
             PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
@@ -40,13 +64,13 @@ public class SampleScene : MonoBehaviourPunCallbacks
                         PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
                         break;
                     case 2:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player2", position, Quaternion.identity);
                         break;
                     case 3:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player3", position, Quaternion.identity);
                         break;
                     case 4:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player4", position, Quaternion.identity);
                         break;
                     default:
                         break;
@@ -95,7 +119,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
             case 6:
                 avatarController.TriggerMoveToStartFieldScene("Multi_CommandBattle");
                 GlobalVariables.hasTransitioned = 0; // 次回の遷移を記録
-                AvatarController.triggerId = 0;
+                AvatarController.triggerId++;
                 break;
             default:
                 // 追加のケースが必要な場合はここに記述
@@ -142,6 +166,16 @@ public class SampleScene : MonoBehaviourPunCallbacks
                         return new Vector3(5.8f, -1.3f);
                     case 14:
                         return new Vector3(8.0f, -1.51f);
+                    case 132:
+                        return new Vector3(2.26f, -0.97f);
+                    case 142:
+                        return new Vector3(-6.08f, -1.2f);
+                    case 152:
+                        return new Vector3(3.56f, -1.2f);
+                    case 162:
+                        return new Vector3(1.58f, -1.87f);
+            case 1000:
+                return new Vector3(2.21f, -0.10f);
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
                         return new Vector3(-1.02f, -0.5f);

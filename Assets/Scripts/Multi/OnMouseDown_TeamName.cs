@@ -39,6 +39,7 @@ public class OnMouseDown_TeamName : MonoBehaviour
         if (PlayerData.Instance != null && !string.IsNullOrEmpty(usernameInput.text) && !string.IsNullOrEmpty(roomName))
         {
             PlayerData.Instance.RoomName = roomName; // シングルトンにルーム名を設定
+            GlobalVariables.teamname = roomName;
             // クリック音を再生
             PlayClickSound();
 

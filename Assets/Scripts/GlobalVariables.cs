@@ -35,10 +35,7 @@ public class GlobalVariables : MonoBehaviour
     // 自分のid(マッチング時に決定するもの)
     public static int mynum = 1;
     public static int hasTransitioned = 0; // フラグを追加
-    public static int numOfPlayer = 2;
-    public static string playername = "Player1";
     public static string teamname = "TeamA";
-    public static float gpa = 3.5f;
     public static float score = 25.0f;
 
 
