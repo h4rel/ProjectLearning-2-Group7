@@ -162,8 +162,9 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
 
         enset = enemy.GetComponent<EnemySettings>();
-        enset.setHP((int)(enset.getmaxHP() * multihp[pn]));
-        enset.setATK((int)(enset.getATK() * multiatk[pn]));
+        enset.setHP((int)(enset.getmaxHP() * multihp[pn-1]));
+        enset.setATK((int)(enset.getATK() * multiatk[pn-1]));
+        enset.TakeDamage(0);
         rand = new System.Random((int)Time.time); //Time
         order = new int[pn + 1];
         plset = new List<PlayerSettings>();

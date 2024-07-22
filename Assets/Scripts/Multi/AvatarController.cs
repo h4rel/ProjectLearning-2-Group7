@@ -149,12 +149,18 @@ public class AvatarController : MonoBehaviourPunCallbacks
     }
     public void TriggerMoveToStartFieldScene(string sceneName)
     {
-        photonView.RPC("MoveToStartFieldScene", RpcTarget.All, sceneName);
+        photonView.RPC("MoveToStartFieldScene", RpcTarget.All, sceneName, triggerId);
     }
 
     [PunRPC]
-private void MoveToStartFieldScene(string sceneName)
+private void MoveToStartFieldScene(string sceneName, int trg)
 {
+        GlobalVariables.building = ((trg - 100) / 10) - 3;
+        string ss;
+        if (trg < 140) ss = "3";
+        else if (trg < 160) ss = "4";
+        else ss = "6";
+        GlobalVariables.beforeScene = "Field0" + ss +"SceneMulti";
     if(triggerId == 131 || triggerId == 141 || triggerId == 151 || triggerId == 161){
         // ルームから退出
     PhotonNetwork.LeaveRoom();
