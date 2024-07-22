@@ -149,9 +149,16 @@ public class AvatarController : MonoBehaviourPunCallbacks
     [PunRPC]
 private void MoveToStartFieldScene(string sceneName)
 {
-    // ルームから退出
+    if(triggerId == 13){
+        // ルームから退出
     PhotonNetwork.LeaveRoom();
     // シーンを読み込む
     PhotonNetwork.LoadLevel(sceneName);
+    } else {
+    PhotonNetwork.LeaveRoom();
+    // シーンを読み込む
+    PhotonNetwork.LoadLevel("Field03SceneMulti");
+    }
+    
 }
 }

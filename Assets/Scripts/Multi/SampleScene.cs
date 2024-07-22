@@ -49,8 +49,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
     private IEnumerator HandleSceneTransition(AvatarController avatarController)
     {
-        // ここで遅延を追加します。たとえば、1秒の遅延。
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
 
         switch (GlobalVariables.hasTransitioned)
         {
@@ -63,9 +62,9 @@ public class SampleScene : MonoBehaviourPunCallbacks
                 avatarController.TriggerMoveToStartFieldScene("Field02SceneMulti");
                 break;
             case 2:
+                avatarController.TriggerMoveToStartFieldScene("Field03SceneMulti");
                 GlobalVariables.hasTransitioned = 0; // 次回の遷移を記録
                 AvatarController.triggerId = 0;
-                avatarController.TriggerMoveToStartFieldScene("Field03SceneMulti");
                 break;
             default:
                 // 追加のケースが必要な場合はここに記述
