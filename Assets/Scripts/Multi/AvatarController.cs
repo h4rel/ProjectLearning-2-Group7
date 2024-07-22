@@ -91,7 +91,22 @@ public class AvatarController : MonoBehaviourPunCallbacks
 
             if (triggerId == 131 || triggerId == 141 || triggerId == 151 || triggerId == 161)
             {
-                TriggerMoveToStartFieldScene("StartFieldSceneMulti");
+                if (GlobalVariables.id[((triggerId - 101) / 10) - 3, GlobalVariables.enter_times[((triggerId - 101) / 10) - 3]] >= 0)
+                {
+                    TriggerMoveToStartFieldScene("StartFieldSceneMulti");
+                }
+                else
+                {
+                    GlobalVariables.building = ((trg - 100) / 10) - 3;
+                    string ss;
+                    if (trg < 140) ss = "3";
+                    else if (trg < 160) ss = "4";
+                    else ss = "6";
+                    GlobalVariables.beforeScene = "Field0" + ss + "SceneMulti";
+                    PhotonNetwork.LeaveRoom();
+                    triggerId++;
+                    SceneManager.LoadScene("NoOneHereScene");
+                }
             }
             else
             {
