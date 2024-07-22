@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SquadMatchSceneMulti
+  sceneName: TeamName4Scene
 --- !u!114 &848163026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: DuoMatchSceneMulti
+  sceneName: TeamName2Scene
 --- !u!114 &1005063753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666dff85996dc4499ac519d38ed2e681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: TrioMatchSceneMulti
+  sceneName: TeamName3Scene
 --- !u!114 &1678335235
 MonoBehaviour:
   m_ObjectHideFlags: 0

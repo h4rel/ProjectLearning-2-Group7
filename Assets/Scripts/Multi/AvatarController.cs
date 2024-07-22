@@ -89,7 +89,7 @@ public class AvatarController : MonoBehaviourPunCallbacks
 
             triggerId = trigger.triggerId;
 
-            if (triggerId == 13)
+            if (triggerId == 131 || triggerId == 141 || triggerId == 151 || triggerId == 161)
             {
                 TriggerMoveToStartFieldScene("StartFieldSceneMulti");
             }
@@ -134,6 +134,12 @@ public class AvatarController : MonoBehaviourPunCallbacks
                     case 12:
                         SceneManager.LoadScene("Field05SceneMulti");
                         break;
+                    case 13:
+                        SceneManager.LoadScene("Field04SceneMulti");
+                        break;
+                    case 14:
+                        SceneManager.LoadScene("Field06SceneMulti");
+                        break;
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
                         break;
@@ -149,7 +155,7 @@ public class AvatarController : MonoBehaviourPunCallbacks
     [PunRPC]
 private void MoveToStartFieldScene(string sceneName)
 {
-    if(triggerId == 13){
+    if(triggerId == 131 || triggerId == 141 || triggerId == 151 || triggerId == 161){
         // ルームから退出
     PhotonNetwork.LeaveRoom();
     // シーンを読み込む
@@ -157,7 +163,7 @@ private void MoveToStartFieldScene(string sceneName)
     } else {
     PhotonNetwork.LeaveRoom();
     // シーンを読み込む
-    PhotonNetwork.LoadLevel("Field03SceneMulti");
+    PhotonNetwork.LoadLevel("Multi_CommandBattle");
     }
     
 }
