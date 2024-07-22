@@ -9,18 +9,42 @@ public class SampleScene : MonoBehaviourPunCallbacks
 
     private int triggerId = 0;
 
+    bool end = false;
+
     private void Start() {
+        end = false;
     if (PhotonNetwork.NetworkClientState == ClientState.Disconnected) {
         PhotonNetwork.ConnectUsingSettings();
     } else {
         Debug.LogWarning("ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: " + PhotonNetwork.NetworkClientState);
     }
+    if (!end)
+        {
+            Continue();
+        }
+
 }
+
+    public void Continue()
+    {
+        if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
+        {
+            end = true;
+            string room = PlayerData.Instance.RoomName;
+            string roomName = $"{room}{roomNumber}";
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
+        }
+        else
+        {
+            Debug.LogWarning("Room name is not set.");
+        }
+    }
 
 
     public override void OnConnectedToMaster() {
         if (PlayerData.Instance != null && !string.IsNullOrEmpty(PlayerData.Instance.RoomName))
         {
+            end = true;
             string room = PlayerData.Instance.RoomName;
             string roomName = $"{room}{roomNumber}";
             PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), TypedLobby.Default);
