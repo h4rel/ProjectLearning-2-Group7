@@ -64,13 +64,13 @@ public class SampleScene : MonoBehaviourPunCallbacks
                         PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
                         break;
                     case 2:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player2", position, Quaternion.identity);
                         break;
                     case 3:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player3", position, Quaternion.identity);
                         break;
                     case 4:
-                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        PhotonNetwork.Instantiate("Player4", position, Quaternion.identity);
                         break;
                     default:
                         break;
