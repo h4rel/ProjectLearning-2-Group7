@@ -34,7 +34,23 @@ public class SampleScene : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Vector3 position = GetSpawnPosition();
-        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+        switch (GlobalVariables.mynum)
+                {
+                    case 1:
+                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        break;
+                    case 2:
+                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        break;
+                    case 3:
+                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        break;
+                    case 4:
+                        PhotonNetwork.Instantiate("Player1", position, Quaternion.identity);
+                        break;
+                    default:
+                        break;
+                }
 
         if (triggerId == 131 || triggerId == 141 || triggerId == 151 || triggerId == 161)
         {
