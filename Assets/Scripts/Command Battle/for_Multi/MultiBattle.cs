@@ -50,6 +50,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private int dead;
 
+    private List<int> now_dead = new List<int> { };
+
+    private List<int> dead_list = new List<int> { };
+
     private int end = 0;
 
     private List<PlayerSettings> plset;
@@ -59,6 +63,12 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private EnemySettings enset;
 
     private System.Random rand;
+
+    private int trg;
+
+    private static float[] multiatk = new float[] { 1, 1.25f, 1.5f, 1.75f };
+
+    private static float[] multihp = new float[] { 1, 1.5f, 2.0f, 2.5f };
 
 
 
@@ -102,6 +112,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         pl_panel[1].SetActive(false);
         pl_panel[2].SetActive(false);
         pl_panel[3].SetActive(false);
+
     }
 
 
@@ -120,6 +131,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
         pn = GlobalVariables.NOP;
         alive = pn;
+
+        
 
         plset = new List<PlayerSettings>();
         for (int i = 0; i < pn; i++)
@@ -149,9 +162,12 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
 
         enset = enemy.GetComponent<EnemySettings>();
-        rand = new System.Random(); //Time
+        enset.setHP((int)(enset.getmaxHP() * multihp[pn]));
+        enset.setATK((int)(enset.getATK() * multiatk[pn]));
+        rand = new System.Random((int)Time.time); //Time
         order = new int[pn + 1];
         plset = new List<PlayerSettings>();
+        trg = 0;
         for (int i = 0; i < pn; i++)
         {
             plset.Add(players[i].GetComponent<PlayerSettings>());
@@ -183,13 +199,33 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             {
                 if (x == 0)
                 {
+                    now_dead.Clear();
                     yield return StartCoroutine(Enemyturn());
-                    if (dead >= 0)
+                    if (dead > 0)
                     {
-                        text.Show(plset[dead].getname() + "は力尽きてしまった...");
+                        string ss = "";
+                        if (dead == 1)
+                        {
+                            ss = plset[now_dead[0]].getname();
+                        }
+                        else
+                        {
+                            for (int i = 0; i < dead; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    ss = ss + plset[now_dead[i]].getname();
+                                }
+                                else
+                                {
+                                    ss = ss + "と" + plset[now_dead[i]].getname();
+                                }
+                            }
+                        }
+                        text.Show(ss + "は力尽きてしまった...");
                         yield return new WaitUntil(() => !text._isRunning);
                         yield return new WaitForSeconds(1);
-                        alive--;
+                        alive -= dead;
                     }
                     if (alive <= 0)
                     {
@@ -283,8 +319,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
                 yield return new WaitForSeconds(1);
                 break;
 
-            case "やくそう":
-                text.Show(plset[n - 1].getname() + "はやくそうを使った");
+            case "エナジードリンク":
+                text.Show(plset[n - 1].getname() + "はエナジードリンクを使った");
                 yield return new WaitUntil(() => !text._isRunning);
                 plset[n - 1].Healing(20);
                 yield return new WaitForSeconds(1);
@@ -299,40 +335,71 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private IEnumerator Enemyturn()
     {
-        target = rand.Next(0, pn);
-        while (plset[target].getcurrentHP() <= 0)
+        trg = (trg + 1) % 3;
+        if (trg == 0 && pn > 1)
+        {
+            text.Show(enset.getname() + "のこうげき！");
+            yield return new WaitUntil(() => !text._isRunning);
+            _decided = false;
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                damage = ATK_to_damage((int)(enset.getATK() * 0.7));
+                roomHash["d"] = damage;
+                yield return new WaitForSeconds(1);
+                PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+            }
+            else
+            {
+                yield return new WaitUntil(() => _decided);
+            }
+            foreach (var pl in plset)
+            {
+                pl.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(1);
+            text.Show("全員に" + damage + "のダメージ");
+            yield return new WaitUntil(() => !text._isRunning);
+            yield return new WaitForSeconds(1);
+        }
+        else
         {
             target = rand.Next(0, pn);
-        }
-        text.Show(enset.getname() + "のこうげき！");
-        yield return new WaitUntil(() => !text._isRunning);
-        _decided = false;
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            damage = ATK_to_damage(enset.getATK());
-            roomHash["d"] = damage;
-            roomHash["t"] = target;
+            while (plset[target].getcurrentHP() <= 0)
+            {
+                target = rand.Next(0, pn);
+            }
+            text.Show(enset.getname() + "のこうげき！");
+            yield return new WaitUntil(() => !text._isRunning);
+            _decided = false;
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                damage = ATK_to_damage(enset.getATK());
+                roomHash["d"] = damage;
+                roomHash["t"] = target;
+                yield return new WaitForSeconds(1);
+                PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+            }
+            else
+            {
+                yield return new WaitUntil(() => _decided);
+            }
+            plset[target].TakeDamage(damage);
             yield return new WaitForSeconds(1);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
-        }
-        else
-        {
-            yield return new WaitUntil(()=> _decided);
-        }
-        plset[target].TakeDamage(damage);
-        yield return new WaitForSeconds(1);
 
-        text.Show(plset[target].getname() + "に" + damage + "のダメージ");
-        yield return new WaitUntil(() => !text._isRunning);
-        yield return new WaitForSeconds(1);
-        if (plset[target].getcurrentHP() <= 0)
-        {
-            dead = target;
+            text.Show(plset[target].getname() + "に" + damage + "のダメージ");
+            yield return new WaitUntil(() => !text._isRunning);
+            yield return new WaitForSeconds(1);
         }
-        else
+
+        for (int i = 0; i < pn; i++)
         {
-            dead = -1;
+            if (plset[i].getcurrentHP() <= 0 && (!dead_list.Contains(i)))
+            {
+                now_dead.Add(i);
+                dead_list.Add(i);
+            }
         }
+        dead = now_dead.Count;
     }
 
     private int ATK_to_damage(int atk)
