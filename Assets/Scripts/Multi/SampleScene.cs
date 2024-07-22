@@ -166,6 +166,14 @@ public class SampleScene : MonoBehaviourPunCallbacks
                         return new Vector3(5.8f, -1.3f);
                     case 14:
                         return new Vector3(8.0f, -1.51f);
+                    case 132:
+                        return new Vector3(2.26f, -0.97f);
+                    case 142:
+                        return new Vector3(-6.08f, -1.2f);
+                    case 152:
+                        return new Vector3(3.56f, -1.2f);
+                    case 162:
+                        return new Vector3(1.58f, -1.87f);
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
                         return new Vector3(-1.02f, -0.5f);
