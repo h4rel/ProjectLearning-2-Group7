@@ -168,7 +168,8 @@ private void MoveToStartFieldScene(string sceneName, int trg)
     PhotonNetwork.LoadLevel(sceneName);
     } else {
     PhotonNetwork.LeaveRoom();
-    // シーンを読み込む
+            // シーンを読み込む
+            triggerId = trg;
     PhotonNetwork.LoadLevel("Multi_CommandBattle");
     }
     

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponRef : MonoBehaviour
 {
-    private static string[] weapon = new string[] { "そうびなし", "Logical   ATK +5", "Accuracy   ATK +7", "Knowledgeble   ATK +9", "Punctual   ATK +13" };
+    private static string[] weapon = new string[] { "そうびなし", "Logical   ATK +5", "Accuracy   ATK +7", "Knowledgeble   ATK +11", "Punctual   ATK +15" };
     [SerializeField] private TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
