@@ -119,7 +119,7 @@ public class SampleScene : MonoBehaviourPunCallbacks
             case 6:
                 avatarController.TriggerMoveToStartFieldScene("Multi_CommandBattle");
                 GlobalVariables.hasTransitioned = 0; // 次回の遷移を記録
-                AvatarController.triggerId = 0;
+                AvatarController.triggerId++;
                 break;
             default:
                 // 追加のケースが必要な場合はここに記述
