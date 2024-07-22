@@ -19,7 +19,7 @@ public class MultiBattleEnter : MonoBehaviourPunCallbacks
         // PhotonServerSettingsの設定内容を使ってマスターサーバーへ接続する
         Debug.Log("start");
         end = false;
-        PlayerData.Instance.RoomName = "aaa";     //遷移してこれるようになったら多分消す
+        // PlayerData.Instance.RoomName = "aaa";     //遷移してこれるようになったら多分消す
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("puppy");
         if (!end) Continue();

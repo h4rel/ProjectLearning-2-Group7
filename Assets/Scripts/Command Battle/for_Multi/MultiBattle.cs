@@ -429,7 +429,18 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private void nextScene()
     {
         PhotonNetwork.LeaveRoom();
-        if (end > 0) SceneManager.LoadScene(result);
+        if (end > 0)
+        {
+            if (GlobalVariables.NOP == 1)
+            {
+                SceneManager.LoadScene(result);
+            }
+            else
+            {
+                PhotonNetwork.LoadLevel(result);
+            }
+            
+        }
         else SceneManager.LoadScene(GlobalVariables.beforeScene);
     }
 
