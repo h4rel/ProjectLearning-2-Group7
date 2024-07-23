@@ -73,6 +73,8 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private int trg;
 
+    private int turn = 0;
+
     private static float[] multiatk = new float[] { 1, 1.25f, 1.5f, 1.75f };
 
     private static float[] multihp = new float[] { 1, 1.5f, 2.0f, 2.5f };
@@ -148,6 +150,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
         pn = GlobalVariables.NOP;
         alive = pn;
+        turn = 0;
 
 
 
@@ -227,6 +230,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             // OrderDecider();
             foreach (int x in order)
             {
+                turn++;
                 if (x == 0)
                 {
                     now_dead.Clear();
@@ -442,6 +446,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private void Win()
     {
+        if (turn == 1) GlobalVariables.battleresult = 4;
+        else if (turn == 2) GlobalVariables.battleresult = 3;
+        else if (turn == 3) GlobalVariables.battleresult = 2;
+        else GlobalVariables.battleresult = 1;
         text.Show(enset.getname() + "をたおした！");
         Invoke("nextScene", 4f);
 
