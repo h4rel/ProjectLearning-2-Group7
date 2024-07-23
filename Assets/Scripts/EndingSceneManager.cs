@@ -8,6 +8,7 @@ public class EndingSceneManager : MonoBehaviour
 {
     private void Start()
     {
+        GlobalVariables.score = GlobalVariables.GPT + GlobalVariables.life * 5;
         StartCoroutine(InsertRankingData());
     }
 

@@ -33,6 +33,10 @@ public class Match : MonoBehaviourPunCallbacks
 
         // 自分の順番を設定する
         GlobalVariables.mynum = PhotonNetwork.CurrentRoom.PlayerCount;
+        if (GlobalVariables.mynum == maxPlayers)
+        {
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+        }
         Debug.Log($"My player number: {GlobalVariables.mynum}");
 
         // 全プレイヤーが揃ったらシーン遷移を行う
