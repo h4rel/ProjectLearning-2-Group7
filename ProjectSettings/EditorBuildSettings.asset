@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiScene/Field06SceneMulti.unity
     guid: a73fa6e8a4d25d647b1cb632691e8169
   - enabled: 1
+    path: Assets/Scenes/MultiScene/ShopSceneMulti.unity
+    guid: 6c09fcfe1bac98a48aeae4fc3f56f5fa
+  - enabled: 1
     path: Assets/Scenes/MultiScene/Multi_CommandBattle.unity
     guid: a6be40cf76c8e654fb56df137d38d5ec
   - enabled: 1

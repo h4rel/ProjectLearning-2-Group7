@@ -117,6 +117,10 @@ public class SampleScene : MonoBehaviourPunCallbacks
                 avatarController.TriggerMoveToStartFieldScene("Field06SceneMulti");
                 break;
             case 6:
+                GlobalVariables.hasTransitioned = 7; // シーン遷移が実行されたことを記録
+                avatarController.TriggerMoveToStartFieldScene("ShopSceneMulti");
+                break;
+            case 7:
                 avatarController.TriggerMoveToStartFieldScene("Multi_CommandBattle");
                 GlobalVariables.hasTransitioned = 0; // 次回の遷移を記録
                 AvatarController.triggerId++;
@@ -175,7 +179,9 @@ public class SampleScene : MonoBehaviourPunCallbacks
                     case 162:
                         return new Vector3(1.58f, -1.87f);
             case 1000:
-                return new Vector3(2.21f, -0.10f);
+                return new Vector3(1000.0f, 1000.0f);
+                    case 1001:
+                        return new Vector3(2.21f, -0.1f);
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
                         return new Vector3(-1.02f, -0.5f);
