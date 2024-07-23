@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
     path: Assets/Scenes/SelectGameScene.unity
     guid: 581f1ccba86a94f098266401846049f7
   - enabled: 1
@@ -23,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MultiScene/DuoMatchSceneMulti.unity
     guid: 57303801583d3c9419851363fb9605cb
+  - enabled: 1
+    path: Assets/Scenes/EndingScene.unity
+    guid: 97c0de922b5fe4a3181873db72cc7320
+  - enabled: 1
+    path: Assets/Scenes/DuoMatchScene.unity
+    guid: 7d2c857d406ce4057b2c64e6b2bb18be
+  - enabled: 1
+    path: Assets/Scenes/FailureScene.unity
+    guid: e60379f71bde750469d1fa7264098641
+  - enabled: 1
+    path: Assets/Scenes/DroppedOut.unity
+    guid: a2c9c8bdd25a975449fc737965225ff1
   - enabled: 1
     path: Assets/Scenes/MultiScene/TrioMatchSceneMulti.unity
     guid: 6734394dc8bb26b4e9295b467181161b
@@ -57,11 +72,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiScene/Multi_CommandBattle.unity
     guid: a6be40cf76c8e654fb56df137d38d5ec
   - enabled: 1
+    path: Assets/Scenes/RetryScene.unity
+    guid: 0ead5d38198b8684bb20f0ffb2fa7069
+  - enabled: 1
+    path: Assets/Scenes/RetireScene.unity
+    guid: f3c45ca3918e241f2be3fe6075de0e76
+  - enabled: 1
     path: Assets/Scenes/ResultScene.unity
     guid: ffdeeecbe7291487b8ad3fbfe5e5c952
-  - enabled: 1
-    path: Assets/Scenes/TitleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: 7b7b94d1ca3dd4c538fa73b3958e74ff
@@ -78,11 +96,23 @@ EditorBuildSettings:
     path: Assets/Scenes/ShopScene.unity
     guid: 79c461b36c5b046449d9598ad00d3f34
   - enabled: 1
+    path: Assets/Scenes/GradeScene.unity
+    guid: 064a4fb4552cb3c4e80b9fef5d5d3949
+  - enabled: 1
     path: Assets/Scenes/Field03Scene.unity
     guid: 70f32c5038d059b4f8c1b60d81c99ed5
   - enabled: 1
+    path: Assets/Scenes/Field05Scene.unity
+    guid: e46fb65ac82224ca1bc9270137323de2
+  - enabled: 1
+    path: Assets/Scenes/Field06Scene.unity
+    guid: 402acf4720b8f4844a5c09cb661ca820
+  - enabled: 1
     path: Assets/Scenes/Field04Scene.unity
     guid: 0dd5531ff4deb41efaf415729317ad4c
+  - enabled: 1
+    path: Assets/Scenes/LevelUp.unity
+    guid: 79acab668db34fb47910865bc671f622
   - enabled: 1
     path: Assets/Scenes/NoOneHereScene.unity
     guid: ada52842d16904542aa848fedd07d1f9
