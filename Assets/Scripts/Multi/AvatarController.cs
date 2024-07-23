@@ -156,7 +156,7 @@ public class AvatarController : MonoBehaviourPunCallbacks
                         SceneManager.LoadScene("Field06SceneMulti");
                         break;
                     case 1000:
-                        SceneManager.LoadScene("ShopScene");
+                        SceneManager.LoadScene("ShopSceneMulti");
                         break;
                     default:
                         Debug.LogWarning("Unknown triggerId: " + triggerId);
