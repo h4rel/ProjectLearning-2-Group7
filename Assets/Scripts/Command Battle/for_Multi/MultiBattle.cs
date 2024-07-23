@@ -228,9 +228,9 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         while (end == 0)
         {
             // OrderDecider();
+            turn++;
             foreach (int x in order)
             {
-                turn++;
                 if (x == 0)
                 {
                     now_dead.Clear();
