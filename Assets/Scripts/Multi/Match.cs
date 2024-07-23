@@ -35,11 +35,7 @@ public class Match : MonoBehaviourPunCallbacks
         GlobalVariables.mynum = PhotonNetwork.CurrentRoom.PlayerCount;
         if (GlobalVariables.mynum == maxPlayers)
         {
-            var roomHash = new ExitGames.Client.Photon.Hashtable();
-            string tt = Time.time.ToString("F2");
-            roomHash.Add("tt", tt);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
-            PlayerData.Instance.RoomName = PlayerData.Instance.RoomName + tt;
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
         }
         Debug.Log($"My player number: {GlobalVariables.mynum}");
 
@@ -59,27 +55,9 @@ public class Match : MonoBehaviourPunCallbacks
         // ここでは新しいプレイヤーに番号を設定しない (OnJoinedRoomで既に設定済み)
 
         // 新しいプレイヤーが入ったときも、全プレイヤーが揃ったらシーン遷移を行う
-       /* if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayers) {
-            PhotonNetwork.LoadLevel("StartFieldSceneMulti");
-            PhotonNetwork.LeaveRoom();
-        }*/
-    }
-
-
-
-    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
-    {
-        object value = null;
-        if (propertiesThatChanged.TryGetValue("tt", out value))
-        {
-            string qwe = (string)value;
-            PlayerData.Instance.RoomName = PlayerData.Instance.RoomName +qwe;
-            Debug.Log(PlayerData.Instance.RoomName);
-            GlobalVariables.init();
+        if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayers) {
             PhotonNetwork.LoadLevel("StartFieldSceneMulti");
             PhotonNetwork.LeaveRoom();
         }
-
     }
-
 }

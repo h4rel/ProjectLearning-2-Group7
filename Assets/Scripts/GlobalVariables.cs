@@ -88,12 +88,12 @@ public class GlobalVariables : MonoBehaviour
         minutes = 0;
         seconds = 0;
         hours = 0;
-        starttime = (int)Time.unscaledTime;
+        starttime = (int)Time.time;
     }
 
     public void Update()
     {
-        _time = (int)Time.unscaledTime - starttime;
+        _time = (int)Time.time - starttime;
         minutes = _time / 60;
         seconds = _time % 60;
         if (minutes >= 60)
