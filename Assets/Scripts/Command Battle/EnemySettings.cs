@@ -34,10 +34,7 @@ public class EnemySettings : MonoBehaviour
         init();
 
         flash = GetComponent<newFlash>();
-    }
 
-    private void Start()
-    {
         int e_num = GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]];
         maxHP = eset[e_num].hp;
         ATK = eset[e_num].atk;
@@ -46,6 +43,7 @@ public class EnemySettings : MonoBehaviour
         nametmp.SetText(_name);
         hpcont.updateHP();
     }
+
 
     public void TakeDamage(int damage)
     {

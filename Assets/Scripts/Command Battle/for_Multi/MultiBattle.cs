@@ -188,9 +188,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         }
 
         enset = enemy.GetComponent<EnemySettings>();
-        enset.setHP((int)(enset.getmaxHP() * multihp[pn - 1]));
-        enset.setATK((int)(enset.getATK() * multiatk[pn - 1]));
-        enset.TakeDamage(0);
+        Debug.Log(pn);
         rand = new System.Random((int)Time.time); //Time
         order = new int[pn + 1];
         plset = new List<PlayerSettings>();
@@ -208,6 +206,11 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private IEnumerator first()
     {
+        yield return null;
+        enset.setHP((int)(enset.getmaxHP() * multihp[pn - 1]));
+        enset.setATK((int)(enset.getATK() * multiatk[pn - 1]));
+        enset.TakeDamage(0);
+
         yield return new WaitForSeconds(1);
         text.Show(enset.getname() + "があらわれた！");
         yield return new WaitUntil(() => !text._isRunning);
