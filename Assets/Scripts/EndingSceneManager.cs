@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EndingSceneManager : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         GlobalVariables.score = GlobalVariables.GPT + GlobalVariables.life * 5;
         StartCoroutine(InsertRankingData());
