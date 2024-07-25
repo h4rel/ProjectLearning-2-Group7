@@ -446,9 +446,15 @@ public class MultiBattle : MonoBehaviourPunCallbacks
 
     private void Win()
     {
-        if (turn == 1) GlobalVariables.battleresult = 4;
-        else if (turn == 2) GlobalVariables.battleresult = 3;
-        else if (turn == 3) GlobalVariables.battleresult = 2;
+        int reHP = 0;
+        for (int i = 0; i < pn; i++)
+        {
+            reHP += plset[i].getcurrentHP();
+        }
+        int mxHP = plset[0].getmaxHP() * pn;
+        if (turn <= 2 && alive == pn) GlobalVariables.battleresult = 4;
+        else if (turn <= 3 && alive >= pn-1 && reHP*2 >= mxHP) GlobalVariables.battleresult = 3;
+        else if (alive >= pn-2 && reHP*4 >= mxHP) GlobalVariables.battleresult = 2;
         else GlobalVariables.battleresult = 1;
         text.Show(enset.getname() + "をたおした！");
         Invoke("nextScene", 4f);
