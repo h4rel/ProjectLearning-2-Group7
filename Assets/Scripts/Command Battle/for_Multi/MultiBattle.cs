@@ -356,10 +356,10 @@ public class MultiBattle : MonoBehaviourPunCallbacks
             case "エナジードリンク":
                 text.Show(plset[n - 1].getname() + "はエナジードリンクを使った");
                 yield return new WaitUntil(() => !text._isRunning);
-                plset[n - 1].Healing(20);
+                plset[n - 1].Healing(plset[n-1].getmaxHP()/2);
                 yield return new WaitForSeconds(1);
 
-                text.Show(plset[n - 1].getname() + "は20回復した");
+                text.Show(plset[n - 1].getname() + "は" + plset[n - 1].getmaxHP() / 2 + "回復した");
                 yield return new WaitUntil(() => !text._isRunning);
                 yield return new WaitForSeconds(1);
                 break;

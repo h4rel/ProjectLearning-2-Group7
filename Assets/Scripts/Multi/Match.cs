@@ -56,6 +56,7 @@ public class Match : MonoBehaviourPunCallbacks
 
         // 新しいプレイヤーが入ったときも、全プレイヤーが揃ったらシーン遷移を行う
         if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayers) {
+            GlobalVariables.init();
             PhotonNetwork.LoadLevel("StartFieldSceneMulti");
             PhotonNetwork.LeaveRoom();
         }
