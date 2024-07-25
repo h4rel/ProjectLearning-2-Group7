@@ -185,9 +185,27 @@ public class MultiBattle : MonoBehaviourPunCallbacks
         p_enemy.SetActive(true);
 
         enimg = enemy.GetComponent<Image>();
+        int mimg;
+        switch (GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]])
+        {
+            case 0: mimg = 0; break;
+            case 1: mimg = 1; break;
+            case 2: mimg = 2; break;
+            case 3: mimg = 2; break;
+            case 4: mimg = 3; break;
+            case 5: mimg = 4; break;
+            case 6: mimg = 5; break;
+            case 7: mimg = 6; break;
+            case 8: mimg = 6; break;
+            case 9: mimg = 7; break;
+            case 10: mimg = 8; break;
+            case 11: mimg = 8; break;
+            case 12: mimg = 9; break;
+            default: mimg = 0; break;
+        }
         if (enimg != null)
         {
-            enimg.sprite = monsters[GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]]%10];
+            enimg.sprite = monsters[mimg];
         }
 
         enset = enemy.GetComponent<EnemySettings>();
@@ -370,7 +388,7 @@ public class MultiBattle : MonoBehaviourPunCallbacks
     private IEnumerator Enemyturn()
     {
         trg = (trg + 1) % 3;
-        if (trg == 0 && pn > 1)
+        if (trg == 0 && pn > 1 && GlobalVariables.id[GlobalVariables.building, GlobalVariables.enter_times[GlobalVariables.building]] >= 6)
         {
             text.Show(enset.getname() + "のこうげき！");
             yield return new WaitUntil(() => !text._isRunning);
