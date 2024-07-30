@@ -43,7 +43,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static int[] weapon = new int[] { 0, 0, 0, 0 };
     public static int[] weaponATK = new int[] { 0, 5, 7, 11, 15 };
-    public static int[] weaponPrice = new int[] { 2, 4, 6, 8 };
+    public static int[] weaponPrice = new int[] { 6, 15, 25, 40 };
     public static int hold = -1;
 
     public static int shopselect = -1;
